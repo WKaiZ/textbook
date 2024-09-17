@@ -1,5 +1,5 @@
 ---
-title: 3.5 Monto Carlo Tree Search
+title: 3.5 Monte Carlo Tree Search
 parent: 3. Games
 nav_order: 5
 layout: page

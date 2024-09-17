@@ -3,6 +3,8 @@ title: "10.7 First Order Logic"
 parent: 10. Logic
 nav_order: 7
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 10.7 First Order Logic
@@ -11,9 +13,7 @@ The second dialect of logic, **first-order logic (FOL)**, is more expressive tha
 
 The following table summarizes the first order logic syntax.
 
-
-![First Order Logic Syntax](../assets/images/ch8_pic-1.png)
-
+<img src="{{ site.baseurl }}/assets/images/ch8_pic-1.png" alt="First Order Logic Syntax" />
 
 **Terms** in first-order logic are logical expressions that refer to an object. The simplest form of terms are constant symbols. However, we don't want to define distinct constant symbols for every possible object. For example, if we want to refer to John's left leg and Richard's left leg, we can do so by using **function symbols** like `Leftleg(John)` and `Leftleg(Richard)`. Function symbols are just another way to name objects and are not actual functions.
 
@@ -25,9 +25,7 @@ For example, if the set of objects in our world is the set of all debates, the s
 
 The universal and existential quantifiers are convenient ways to express a conjunction or disjunction, respectively, over all objects. It follows that they also obey De Morgan's laws (note the analogous relationship between conjunctions and disjunctions):
 
-
-![Quantifiers](../assets/images/quantifiers.png)
-
+<img src="{{ site.baseurl }}/assets/images/quantifiers.png" alt="Quantifiers" />
 
 Finally, we use the **equality symbol** to signify that two symbols refer to the same object. For example, the incredible sentence $$\left(Wife(Einstein) = First Cousin(Einstein) \wedge Wife(Einstein) = Second Cousin(Einstein)\right)$$ is true!
 

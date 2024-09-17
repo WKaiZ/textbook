@@ -2,6 +2,8 @@
 title: 8. HMMs
 nav_order: 8
 has_children: true
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 8. HMMs

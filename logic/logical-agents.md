@@ -3,6 +3,8 @@ title: "10.9 Logical Agents"
 parent: 10. Logic
 nav_order: 9
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 10.9 Logical Agents
@@ -15,8 +17,6 @@ $$F^{t+1} \Leftrightarrow ActionCausesF^t \vee (F^t \wedge \neg ActionCausesNotF
 
 In our world, the transition could be formulated as 
 
-$$
-Hot^{t+1} \Leftrightarrow StepCloseToLava^t \vee (Hot^t \wedge \neg StepAwayFromLava^t)
-$$
+$$Hot^{t+1} \Leftrightarrow StepCloseToLava^t \vee (Hot^t \wedge \neg StepAwayFromLava^t)$$
 
 .Having written out the rules of the world in logic, we can now actually do planning by checking the satisfiability of some logic proposition! To do this, we construct a sentence that includes information about the initial state, the transitions (successor-state axioms), and the goal. (e.g. $$InOasis^T \wedge Alive^T$$ encodes the objective of surviving and ending up in the oasis by time T). If the rules of the world have been properly formulated, then finding a satisfying assignment to all the variables will allow us to extract a sequence of actions that will carry the agent to the goal.

@@ -2,6 +2,8 @@
 title: 10. Logic
 nav_order: 10
 has_children: true
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 10. Logic

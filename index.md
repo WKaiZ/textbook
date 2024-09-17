@@ -1,6 +1,8 @@
 ---
 title: Introduction
 nav_order: 0
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # Introduction to Artificial Intelligence

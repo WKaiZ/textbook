@@ -3,6 +3,8 @@ title: 1.1 Agents
 parent: 1. Search
 nav_order: 1
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 1.1 Agents

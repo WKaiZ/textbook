@@ -3,6 +3,8 @@ title: 5.5 Summary
 parent: 5. RL
 nav_order: 5
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 5.5 Summary

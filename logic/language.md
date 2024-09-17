@@ -3,6 +3,8 @@ title: "10.2 The Language of Logic"
 parent: 10. Logic
 nav_order: 2
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 10.2 The Language of Logic
@@ -15,4 +17,4 @@ Just as with any other language, logic sentences are written in a special **synt
 - $$\Rightarrow$$, **implication**: $$A \Rightarrow B$$ is true unless $$A$$ is true and $$$$ is false.
 - $$\Leftrightarrow$$, **biconditional**: $$A \Leftrightarrow B$$ is true *iff* either both $$A$$ and $$B$$ are true or both are false.
 
-![Truth Table](../assets/images/truth_table.png)
+<img src="{{ site.baseurl }}/assets/images/truth_table.png" alt="Truth Table" />

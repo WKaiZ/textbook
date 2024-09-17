@@ -3,6 +3,8 @@ title: 5.2 Model-Based Learning
 parent: 5. RL
 nav_order: 2
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 5.2 Model-Based Learning
@@ -11,11 +13,11 @@ In model-based learning, an agent generates an approximation of the transition f
 
 Consider the following example MDP with states $$S = \{A, B, C, D, E, x\}$$, with $$x$$ representing the terminal state, and discount factor $$\gamma = 1$$:
 
-![MDP Example](../assets/images/rl-example-1.png)
+<img src="{{ site.baseurl }}/assets/images/rl-example-1.png" alt="MDP Example" />
 
 Assume we allow our agent to explore the MDP for four episodes under the policy $$\pi_{explore}$$ delineated above (a directional triangle indicates motion in the direction the triangle points, and a blue square represents taking `exit` as the action of choice), yielding the following results:
 
-![Example Episodes](../assets/images/example-1-episodes.png)
+<img src="{{ site.baseurl }}/assets/images/example-1-episodes.png" alt="Example Episodes" />
 
 We now have a collective 12 samples, 3 from each episode with counts as follows:
 

@@ -2,6 +2,8 @@
 title: 1. Search
 nav_order: 1
 has_children: true
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 1. Search

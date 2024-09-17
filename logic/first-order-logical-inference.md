@@ -3,6 +3,8 @@ title: "10.8 First Order Logical Inference"
 parent: 10. Logic
 nav_order: 8
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 10.8 First Order Logical Inference
@@ -13,8 +15,7 @@ One problem with this approach is there are an infinite number of substitutions 
 
 Another approach is to directly do inference with first-order logic, also known as **lifted inference**. For example, we are given 
 
-$$
-(\forall x ~ HasAbsolutePower(x) \wedge Person(x) \Rightarrow Corrupt(x)) \wedge Person(John) \wedge HasAbsolutePower(John)$$ 
+$$(\forall x ~ HasAbsolutePower(x) \wedge Person(x) \Rightarrow Corrupt(x)) \wedge Person(John) \wedge HasAbsolutePower(John)$$ 
 
 ("absolute power corrupts absolutely"). We can infer $$Corrupt(John)
 $$ by substituting $$x$$ for John. This rule is known as **Generalized Modus Ponens**. The forward chaining algorithm for first-order logic repeatedly applies generalized Modus Ponens and substitution to infer $$q$$ or show that it cannot be inferred.

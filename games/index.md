@@ -2,6 +2,8 @@
 title: 3. Games
 nav_order: 3
 has_children: true
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 3. Games

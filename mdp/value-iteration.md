@@ -3,6 +3,8 @@ title: 4.3 Value Iteration
 parent: 4. MDPs
 nav_order: 3
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 4.3 Value Iteration
@@ -26,8 +28,7 @@ $$| \max_z f(z) - \max_z h(z) | \leq \max_z |f(z) - h(z)|.$$
 
 Now consider two value functions evaluated at the same state $$U(s)$$ and $$U'(s)$$. We show that the Bellman update $$B$$ is a contraction by $$\gamma \in (0, 1)$$ with respect to the max norm as follows:
 
-$$
-\begin{aligned}
+$$\begin{aligned}
     &|BU(s) - BU'(s)| \\
     &= \left| \left( \max_a \sum_{s'}T(s, a, s')[R(s, a, s') + \gamma U(s')] \right) - \left( \max_a \sum_{s'}T(s, a, s')[R(s, a, s') + \gamma U'(s')] \right) \right| \\
     &\leq \max_a \left| \sum_{s'}T(s, a, s')[R(s, a, s') + \gamma U(s')] - \sum_{s'}T(s, a, s')[R(s, a, s') + \gamma U'(s')] \right| \\
@@ -36,8 +37,7 @@ $$
     &\leq \gamma \max_a \left| \sum_{s'}T(s, a, s') \max_{s'} \left| U(s') - U'(s') \right| \right| \\
     &= \gamma \max_{s'} \left| U(s') - U'(s') \right| \\
     &= \gamma ||U(s') - U'(s')||_{\infty},
-\end{aligned}
-$$
+\end{aligned}$$
 <p>
 </p>
 where the first inequality follows from the general inequality introduced above, the second inequality follows from taking the maximum of the differences between $$U$$ and $$U'$$, and in the second-to-last step, we use the fact that probabilities sum to 1 no matter the choice of $$a$$. The last step uses the definition of the max norm for a vector $$x = (x_1, \ldots, x_n)$$, which is $$||x||_{\infty} = \max(|x_1|, \ldots, |x_n|)$$.
@@ -46,7 +46,7 @@ Because we just proved that value iteration via Bellman updates is a contraction
 
 Let's see a few updates of value iteration in practice by revisiting our racecar MDP from earlier, introducing a discount factor of $$\gamma = 0.5$$:
 
-![Race Car MDP](../assets/images/race-car.png)
+<img src="{{ site.baseurl }}/assets/images/race-car.png" alt="Race Car MDP" />
 
 We begin value iteration by initializing all $$U_0(s) = 0$$:
 
@@ -56,8 +56,7 @@ We begin value iteration by initializing all $$U_0(s) = 0$$:
 
 In our first round of updates, we can compute $$\forall s \in S, \:\: U_1(s)$$ as follows:
 
-$$
-\begin{aligned}
+$$\begin{aligned}
     U_1(cool) &= \max \{1 \cdot [1 + 0.5 \cdot 0],\:\: 0.5 \cdot [2 + 0.5 \cdot 0] + 0.5 \cdot [2 + 0.5 \cdot 0]\} \\
     &= \max \{1, 2\} \\
     &= \boxed{2} \\
@@ -66,8 +65,7 @@ $$
     &= \boxed{1} \\
     U_1(overheated) &= \max \{\} \\
     &= \boxed{0}
-\end{aligned}
-$$
+\end{aligned}$$
 
 |  | **cool** | **warm** | **overheated** |
 |---|---|---|---|
@@ -76,8 +74,7 @@ $$
 
 Similarly, we can repeat the procedure to compute a second round of updates with our newfound values for $$U_1(s)$$ to compute $$U_2(s)$$:
 
-$$
-\begin{aligned}
+$$\begin{aligned}
     U_2(cool) &= \max \{1 \cdot [1 + 0.5 \cdot 2],\:\: 0.5 \cdot [2 + 0.5 \cdot 2] + 0.5 \cdot [2 + 0.5 \cdot 1]\} \\
     &= \max \{2, 2.75\} \\
     &= \boxed{2.75} \\
@@ -86,8 +83,7 @@ $$
     &= \boxed{1.75} \\
     U_2(overheated) &= \max \{\} \\
     &= \boxed{0}
-\end{aligned}
-$$
+\end{aligned}$$
 
 |  | **cool** | **warm** | **overheated** |
 |---|---|---|---|
@@ -100,9 +96,7 @@ It's worthwhile to observe that $$U^*(s)$$ for any terminal state must be 0, sin
 ## 4.3.1 Policy Extraction
 Recall that our ultimate goal in solving an MDP is to determine an optimal policy. This can be done once all optimal values for states are determined using a method called **policy extraction**. The intuition behind policy extraction is very simple: if you're in a state $$s$$, you should take the action $$a$$ which yields the maximum expected utility. Not surprisingly, $$a$$ is the action which takes us to the Q-state with maximum Q-value, allowing for a formal definition of the optimal policy:
 
-$$
-\forall s \in S, \:\: \pi^*(s) = \underset{a}{\operatorname{argmax}}\: Q^*(s, a) = \underset{a}{\operatorname{argmax}}\: \sum_{s'}T(s, a, s')[R(s, a, s') + \gamma U^*(s')]
-$$
+$$\forall s \in S, \:\: \pi^*(s) = \underset{a}{\operatorname{argmax}}\: Q^*(s, a) = \underset{a}{\operatorname{argmax}}\: \sum_{s'}T(s, a, s')[R(s, a, s') + \gamma U^*(s')]$$
 
 It's useful to keep in mind for performance reasons that it's better for policy extraction to have the optimal Q-values of states, in which case a single $$\operatorname{argmax}$$ operation is all that is required to determine the optimal action from a state. Storing only each $$U^*(s)$$ means that we must recompute all necessary Q-values with the Bellman equation before applying $$\operatorname{argmax}$$, equivalent to performing a depth-1 expectimax.
 
@@ -111,8 +105,6 @@ In solving for an optimal policy using value iteration, we first find all the op
 
 **Q-value iteration** is a dynamic programming algorithm that computes time-limited Q-values. It is described in the following equation:
 
-$$
-Q_{k+1}(s, a) \leftarrow \sum_{s'}T(s, a, s')[R(s, a, s') + \gamma \max_{a'} Q_k(s', a')]
-$$
+$$Q_{k+1}(s, a) \leftarrow \sum_{s'}T(s, a, s')[R(s, a, s') + \gamma \max_{a'} Q_k(s', a')]$$
 
 Note that this update is only a slight modification over the update rule for value iteration. Indeed, the only real difference is that the position of the $$\max$$ operator over actions has been changed since we select an action before transitioning when we're in a state, but we transition before selecting a new action when we're in a Q-state. Once we have the optimal Q-values for each state and action, we can then find the policy for a state by simply choosing the action which has the highest Q-value.

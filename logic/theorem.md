@@ -3,6 +3,8 @@ title: "10.5 Theorem Proving"
 parent: 10. Logic
 nav_order: 5
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 10.5 Theorem Proving
@@ -18,6 +20,6 @@ We could also prove entailment using three rules of inference:
 
 The last rule forms the basis of the **resolution algorithm**, which iteratively applies it to the knowledge base and to the newly inferred sentences until either $$q$$ is inferred, in which case we have shown that $$KB \models q$$, or there is nothing left to infer, in which case $$KB \not\models q$$.
 
-However, in the special case that our knowledge base only has literals (symbols by themselves) and implications: $$(P_1 \wedge \cdots \wedge P_n \Rightarrow Q) \equiv (\neg P_1 \vee \cdots \vee \neg P_2 \vee Q)$$, we can prove entailment in time linear to the size of the knowledge base. One algorithm, \textbf{forward chaining} iterates through every implication statement in which the \textbf{premise} (left hand side) is known to be true, adding the \textbf{conclusion} (right hand side) to the list of known facts. This is repeated until $$q$$ is added to the list of known facts, or nothing more can be inferred. 
+However, in the special case that our knowledge base only has literals (symbols by themselves) and implications: $$(P_1 \wedge \cdots \wedge P_n \Rightarrow Q) \equiv (\neg P_1 \vee \cdots \vee \neg P_2 \vee Q)$$, we can prove entailment in time linear to the size of the knowledge base. One algorithm, $$\textbf{forward chaining}$$ iterates through every implication statement in which the $$\textbf{premise}$$ (left hand side) is known to be true, adding the $$\textbf{conclusion}$$ (right hand side) to the list of known facts. This is repeated until $$q$$ is added to the list of known facts, or nothing more can be inferred. 
 
-![Forward Chaining Algorithm](../assets/images/Forward-Chaining-algorithm.png)
+<img src="{{ site.baseurl }}/assets/images/Forward-Chaining-algorithm.png" alt="Forward Chaining Algorithm" />

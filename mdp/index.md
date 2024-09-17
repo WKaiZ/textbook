@@ -2,6 +2,8 @@
 title: 4. MDPs
 nav_order: 4
 has_children: true
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 4. MDPs

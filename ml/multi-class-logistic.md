@@ -3,21 +3,19 @@ title: "9.8 Multi-Class Logistic Regression"
 parent: 9. ML
 nav_order: 8
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 9.8 Multi-Class Logistic Regression
 
 In multi-class logistic regression, we want to classify data points into $$K$$ distinct categories, rather than just two. Thus, we want to build a model that outputs estimates of the probabilities for a new data point to belong to each of the $$K$$ possible categories. For that reason, we use the **softmax function** in place of the logistic function, which models the probability of a new data point with features $$\mathbf{x}$$ having label $$i$$ as follows:
 
-$$
-P(y=i|\mathbf{f}(\mathbf{x});\mathbf{w}) = \frac{e^{\mathbf{w}_i^T \mathbf{f}(\mathbf{x})}}{\sum_{k=1}^K e^{\mathbf{w}_k^T \mathbf{f}(\mathbf{x})}}
-$$
+$$P(y=i|\mathbf{f}(\mathbf{x});\mathbf{w}) = \frac{e^{\mathbf{w}_i^T \mathbf{f}(\mathbf{x})}}{\sum_{k=1}^K e^{\mathbf{w}_k^T \mathbf{f}(\mathbf{x})}}$$
 
 Note that these probability estimates add up to 1, so they constitute a valid probability distribution. We estimate the parameters $$\mathbf{w}$$ to maximize the likelihood that we observed the data. Assume that we have observed $$n$$ labelled data points ($$\mathbf{x}_i, y_i$$). The likelihood, which is defined as the joint probability distribution of our samples, is denoted with $$\ell(\mathbf{w}_1, \ldots, \mathbf{w}_K)$$ and is given by:
 
-$$
-\ell(\mathbf{w}_1, \ldots, \mathbf{w}_K) = \prod_{i=1}^{n} P(y_i | \mathbf{f}(\mathbf{x}_i); \mathbf{w})
-$$
+$$\ell(\mathbf{w}_1, \ldots, \mathbf{w}_K) = \prod_{i=1}^{n} P(y_i | \mathbf{f}(\mathbf{x}_i); \mathbf{w})$$
 
 To compute the values of the parameters $$\mathbf{w}_i$$ that maximize the likelihood, we compute the gradient of the likelihood function with respect to each parameter, set it equal to zero, and solve for the unknown parameters. If a closed-form solution is not possible, we compute the gradient of the likelihood and use gradient ascent to obtain the optimal values.
 
@@ -29,9 +27,7 @@ For the likelihood function, we need a way to express the probabilities $$P(y_i 
 <p>
 </p>
 
-$$
-\ell(\mathbf{w}_1, \ldots, \mathbf{w}_K) = \prod_{i=1}^{n} \prod_{k=1}^K \left( \frac{e^{\mathbf{w}_k^T \mathbf{f}(\mathbf{x}_i)}}{\sum_{\ell=1}^K e^{\mathbf{w}_\ell^T \mathbf{f}(\mathbf{x}_i)}} \right)^{t_{i,k}}
-$$
+$$\ell(\mathbf{w}_1, \ldots, \mathbf{w}_K) = \prod_{i=1}^{n} \prod_{k=1}^K \left( \frac{e^{\mathbf{w}_k^T \mathbf{f}(\mathbf{x}_i)}}{\sum_{\ell=1}^K e^{\mathbf{w}_\ell^T \mathbf{f}(\mathbf{x}_i)}} \right)^{t_{i,k}}$$
 
 <p>
 </p>
@@ -42,9 +38,7 @@ and we also obtain for the log-likelihood:
 <p>
 </p>
 
-$$
-\log \ell(\mathbf{w}_1, \ldots, \mathbf{w}_K) = \sum_{i=1}^{n} \sum_{k=1}^K t_{i,k} \log \left( \frac{e^{\mathbf{w}_k^T \mathbf{f}(\mathbf{x}_i)}}{\sum_{\ell=1}^K e^{\mathbf{w}_\ell^T \mathbf{f}(\mathbf{x}_i)}} \right)
-$$
+$$\log \ell(\mathbf{w}_1, \ldots, \mathbf{w}_K) = \sum_{i=1}^{n} \sum_{k=1}^K t_{i,k} \log \left( \frac{e^{\mathbf{w}_k^T \mathbf{f}(\mathbf{x}_i)}}{\sum_{\ell=1}^K e^{\mathbf{w}_\ell^T \mathbf{f}(\mathbf{x}_i)}} \right)$$
 <p>
 </p>
 
@@ -54,9 +48,7 @@ In the example of multi-class logistic regression, the gradient with respect to 
 
 <p>
 </p>
-$$
-\nabla_{\mathbf{w}_j} \log \ell(\mathbf{w}) = \sum_{i=1}^{n} \nabla_{\mathbf{w}_j} \sum_{k=1}^K t_{i,k} \log \left( \frac{e^{\mathbf{w}_k^T \mathbf{f}(\mathbf{x}_i)}}{\sum_{\ell=1}^K e^{\mathbf{w}_\ell^T \mathbf{f}(\mathbf{x}_i)}} \right) = \sum_{i=1}^{n} \left( t_{i,j} - \frac{e^{\mathbf{w}_j^T \mathbf{f}(\mathbf{x}_i)}}{\sum_{\ell=1}^K e^{\mathbf{w}_\ell^T \mathbf{f}(\mathbf{x}_i)}} \right) \mathbf{f}(\mathbf{x}_i)
-$$
+$$\nabla_{\mathbf{w}_j} \log \ell(\mathbf{w}) = \sum_{i=1}^{n} \nabla_{\mathbf{w}_j} \sum_{k=1}^K t_{i,k} \log \left( \frac{e^{\mathbf{w}_k^T \mathbf{f}(\mathbf{x}_i)}}{\sum_{\ell=1}^K e^{\mathbf{w}_\ell^T \mathbf{f}(\mathbf{x}_i)}} \right) = \sum_{i=1}^{n} \left( t_{i,j} - \frac{e^{\mathbf{w}_j^T \mathbf{f}(\mathbf{x}_i)}}{\sum_{\ell=1}^K e^{\mathbf{w}_\ell^T \mathbf{f}(\mathbf{x}_i)}} \right) \mathbf{f}(\mathbf{x}_i)$$
 <p>
 </p>
 

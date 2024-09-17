@@ -3,6 +3,8 @@ title: 4.5 Summary
 parent: 4. MDPs
 nav_order: 5
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 4.5 Summary

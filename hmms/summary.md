@@ -3,6 +3,8 @@ title: 8.5 Summary
 parent: 8. HMMs
 nav_order: 5
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 8.5 Summary

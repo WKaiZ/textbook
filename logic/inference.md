@@ -3,6 +3,8 @@ title: "10.4 Propositional Logical Inference"
 parent: 10. Logic
 nav_order: 4
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 10.4 Propositional Logical Inference
@@ -33,7 +35,7 @@ The first, proposed by Davis, Putnam, Logemann, and Loveland (which we will call
 2. **Pure Symbol Heuristic**: A pure symbol is a symbol that only shows up in its positive form (or only in its negative form) throughout the entire sentence. Pure symbols can immediately be assigned true or false. For example, in the sentence $$(A \vee B) \wedge (\neg B \vee C) \wedge (\neg C \vee A)$$, we can identify $$A$$ as the only pure symbol and can immediately A assign to true, reducing the satisfying problem to one of just finding a satisfying assignment of $$(\neg B \vee C)$$.
 3. **Unit Clause Heuristic**: A unit clause is a clause with just one literal or a disjunction with one literal and many falses. In a unit clause, we can immediately assign a value to the literal since there is only one valid assignment. For example, $$B$$ must be true for the unit clause $$(B \vee false \vee \cdots \vee false)$$ to be true.
 
-![DPLL Algorithm](../assets/images/DPLL_alg.png)
+<img src="{{ site.baseurl }}/assets/images/DPLL_alg.png" alt="DPLL Algorithm" />
 
 ## 10.4.2 DPLL: Example
 
@@ -41,9 +43,7 @@ Suppose we have the
 
  following sentence in conjunctive normal form (CNF):
 
-$$
-(\neg N \vee \neg S) \land (M \vee Q \vee N) \land (L \vee \neg M) \land (L \vee \neg Q) \land (\neg L \vee \neg P) \land (R \vee P \vee N) \land (\neg R \vee \neg L) \land (S)
-$$
+$$(\neg N \vee \neg S) \land (M \vee Q \vee N) \land (L \vee \neg M) \land (L \vee \neg Q) \land (\neg L \vee \neg P) \land (R \vee P \vee N) \land (\neg R \vee \neg L) \land (S)$$
 
 We want to use the DPLL algorithm to determine whether it is satisfiable. Suppose we use a fixed variable ordering (alphabetical order) and a fixed value ordering (true before false).
 

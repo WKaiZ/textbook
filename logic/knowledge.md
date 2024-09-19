@@ -3,6 +3,8 @@ title: "10.1 A Knowledge Based Agent"
 parent: 10. Logic
 nav_order: 1
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 10.1 A Knowledge Based Agent

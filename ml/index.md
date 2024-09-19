@@ -2,6 +2,8 @@
 title: 9. ML
 nav_order: 9
 has_children: true
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 9. ML

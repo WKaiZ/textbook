@@ -1,8 +1,10 @@
 ---
-title: 3.5 Monto Carlo Tree Search
+title: 3.5 Monte Carlo Tree Search
 parent: 3. Games
 nav_order: 5
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 3.5 Monte Carlo Tree Search
@@ -16,15 +18,15 @@ In the Go example, from a given state, we play until termination according to a 
 
 Consider the following example:
 
-![MCTS Example 1](../assets/images/MCTS1.png)
+<img src="{{ site.baseurl }}/assets/images/MCTS1.png" alt="MCTS Example 1" />
 
 From the current state we have three different available actions (left, middle and right). We take each action $$100$$ times and we record the percentage of wins for each one. After the simulations, we are fairly confident that the right action is the best one. In this scenario, we allocated the same amount of simulations to each alternative action. However, it might become clear after a few simulations that a certain action does not return many wins and thus we might choose to allocate this computational effort in doing more simulations for the other actions. This case can be seen in the following figure, where we decided to allocate the remaining $$90$$ simulations for the middle action to the left and right actions.
 
-![MCTS Example 2](../assets/images/MCTS2.png)
+<img src="{{ site.baseurl }}/assets/images/MCTS2.png" alt="MCTS Example 2" />
 
 An interesting case arises when some actions yield similar percentages of wins, but one of them has used far fewer simulations to estimate that percentage, as shown in the next figure. In this case, the estimate of the action that used fewer simulations will have higher variance, and hence we might want to allocate a few more simulations to that action to be more confident about the true percentage of wins.
 
-![MCTS Example 3](../assets/images/MCTS3.png)
+<img src="{{ site.baseurl }}/assets/images/MCTS3.png" alt="MCTS Example 3" />
 
 The **UCB algorithm** captures this trade-off between "promising" and "uncertain" actions by using the following criterion at each node $$n$$:
 

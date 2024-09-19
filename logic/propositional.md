@@ -3,6 +3,8 @@ title: "10.3 Propositional Logic"
 parent: 10. Logic
 nav_order: 3
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 10.3 Propositional Logic 
@@ -18,7 +20,7 @@ In general, for $$N$$ symbols, there are $$2^N$$ possible models. We say a sente
 
 Below are some useful logical equivalences, which can be used for simplifying sentences to forms that are easier to work and reason with.
 
-![Logical Equivalences](../assets/images/logical_equivalences.png)
+<img src="{{ site.baseurl }}/assets/images/logical_equivalences.png" alt="Logical Equivalences" />
 
 One particularly useful syntax in propositional logic is the **conjunctive normal form** or **CNF** which is a conjunction of clauses, each of which a disjunction of literals. It has the general form $$(P_1 \vee \cdots \vee P_i) \wedge \cdots \wedge (P_j \vee \cdots \vee P_n)$$, i.e. it is an 'AND' of 'OR's. As we'll see, a sentence in this form is good for some analyses. Importantly, every logical sentence has a logically equivalent conjunctive normal form. This means that we can formulate all the information contained in our knowledge base (which is just a conjunction of different sentences) as one large CNF statement, by 'AND'-ing these CNF statements together.
 

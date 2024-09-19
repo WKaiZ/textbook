@@ -3,6 +3,8 @@ title: "10.10 Summary"
 parent: 10. Logic
 nav_order: 10
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 10.10 Summary

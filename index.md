@@ -1,6 +1,8 @@
 ---
 title: Introduction
 nav_order: 0
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # Introduction to Artificial Intelligence
@@ -15,6 +17,11 @@ _Special Thanks to Ashley Chiu from CS 161._
 
 
 This is the textbook for [CS 188: Introduction to Artificial Intelligence](https://inst.eecs.berkeley.edu/~cs188/) at [UC Berkeley](https://eecs.berkeley.edu/). It provides an introduction to the full range of topics studied in artificial intelligence, with emphasis on the "core competences" of intelligent systems - problem solving, reasoning, decision making, and learning - and on the logical and probabilistic foundations of these activities.
+
+## PDF Version
+[These notes are available as a PDF.](https://inst.eecs.berkeley.edu/~cs188/textbook/textbook_full.pdf)
+
+This PDF is automatically generated each time there is a [correction](#corrections) made to the website. This means that it is _completely possible_ for a downloaded copy to be not up-to-date. If your desired mode of the textbook is in PDF form, we recommend you regularly redownload in cases there were recent corrections made.
 
 ## Corrections
 

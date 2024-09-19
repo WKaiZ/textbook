@@ -3,6 +3,8 @@ title: 1.6 Summary
 parent: 1. Search
 nav_order: 6
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 1.5 Summary

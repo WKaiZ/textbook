@@ -3,6 +3,8 @@ title: 4.2 Solving Markov Decision Processes
 parent: 4. MDPs
 nav_order: 2
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 4.2 Solving Markov Decision Processes
@@ -11,11 +13,11 @@ Recall that in deterministic, non-adversarial search, solving a search problem m
 
 Consider the following MDP with $$S = \{a, b, c, d, e\}$$, $$A = \{East, West, Exit\}$$ (with $$Exit$$ being a valid action only in states $$a$$ and $$e$$ and yielding rewards of 10 and 1 respectively), a discount factor $$\gamma = 0.1$$, and deterministic transitions:
 
-![Easy MDP](../assets/images/easy-mdp.png)
+<img src="{{ site.baseurl }}/assets/images/easy-mdp.png" alt="Easy MDP" />
 
 Two potential policies for this MDP are as follows:
 
-| ![Policy 1](../assets/images/policy-1.png) | ![Policy 2](../assets/images/policy-2.png) |
+| <img src="{{ site.baseurl }}/assets/images/policy-1.png" alt="Policy 1" /> | <img src="{{ site.baseurl }}/assets/images/policy-2.png" alt="Policy 2" /> |
 |:-----------------------------:|:-----------------------------:|
 | Policy 1                      | Policy 2                      |
 
@@ -40,21 +42,21 @@ In order to talk about the Bellman equation for MDPs, we must first introduce tw
 
 Using these two new quantities and the other MDP quantities discussed earlier, the Bellman equation is defined as follows:
 
-$$ U^*(s) = \max_a \sum_{s'}T(s, a, s')[R(s, a, s') + \gamma U^*(s')] $$
+$$U^*(s) = \max_a \sum_{s'}T(s, a, s')[R(s, a, s') + \gamma U^*(s')]$$
 
 Before we begin interpreting what this means, let's also define the equation for the optimal value of a Q-state (more commonly known as an optimal **Q-value**):
 
-$$ Q^*(s, a) = \sum_{s'}T(s, a, s')[R(s, a, s') + \gamma U^*(s')] $$
+$$Q^*(s, a) = \sum_{s'}T(s, a, s')[R(s, a, s') + \gamma U^*(s')]$$
 
 Note that this second definition allows us to re-express the Bellman equation as
 
-$$ U^*(s) = \max_a Q^*(s, a) $$
+$$U^*(s) = \max_a Q^*(s, a)$$
 
 which is a dramatically simpler quantity. The Bellman equation is an example of a *dynamic programming equation*, an equation that decomposes a problem into smaller subproblems via an inherent recursive structure. We can see this inherent recursion in the equation for the Q-value of a state, in the term $$[R(s, a, s') + \gamma U^*(s')]$$. This term represents the total utility an agent receives by first taking $$a$$ from $$s$$ and arriving at $$s'$$ and then acting optimally henceforth. The immediate reward from the action $$a$$ taken, $$R(s, a, s')$$, is added to the optimal discounted sum of rewards attainable from $$s'$$, $$U^*(s')$$, which is discounted by $$\gamma$$ to account for the passage of one timestep in taking action $$a$$. Though in most cases there exists a vast number of possible sequences of states and actions from $$s'$$ to some terminal state, all this detail is abstracted away and encapsulated in a single recursive value, $$U^*(s')$$.
 
 We can now take another step outwards and consider the full equation for Q-value. Knowing $$[R(s, a, s') + \gamma U^*(s')]$$ represents the utility attained by acting optimally after arriving in state $$s'$$ from Q-state $$(s, a)$$, it becomes evident that the quantity
 
-$$ \sum_{s'}T(s, a, s')[R(s, a, s') + \gamma U^*(s')] $$
+$$\sum_{s'}T(s, a, s')[R(s, a, s') + \gamma U^*(s')]$$
 
 is simply a weighted sum of utilities, with each utility weighted by its probability of occurrence. This is by definition the *expected utility* of acting optimally from Q-state $$(s, a)$$ onwards! This completes our analysis and gives us enough insight to interpret the full Bellman equation — the optimal value of a state, $$U^*(s)$$, is simply the *maximum expected utility* over all possible actions from $$s$$. Computing maximum expected utility for a state $$s$$ is essentially the same as running expectimax — we first compute the expected utility from each Q-state $$(s, a)$$ (equivalent to computing the value of chance nodes), then compute the maximum over these nodes to compute the maximum expected utility (equivalent to computing the value of a maximizer node).
 

@@ -3,6 +3,8 @@ title: 3.6 Summary
 parent: 3. Games
 nav_order: 6
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 3.6 Summary

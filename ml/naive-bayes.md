@@ -3,6 +3,8 @@ title: "9.2 Naives Bayes"
 parent: 9. ML
 nav_order: 2
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 9.2 Naive Bayes
@@ -23,13 +25,9 @@ Now let's say you have a dictionary of $$n$$ words, and from each email, you ext
 
 With these definitions, we can define more concretely how to predict whether an email is spam or ham—if we can generate a joint probability table between each $$F_i$$ and the label $$Y$$, we can compute the probability any email under consideration is spam or ham given its feature vector. Specifically, we can compute both
 
-$$
-P(Y = \text{spam} | F_1 = f_1, \dots, F_n = f_n)
-$$
+$$P(Y = \text{spam} | F_1 = f_1, \dots, F_n = f_n)$$
 
-$$
-P(Y = \text{ham} | F_1 = f_1, \dots, F_n = f_n)
-$$
+$$P(Y = \text{ham} | F_1 = f_1, \dots, F_n = f_n)$$
 
 and simply label the email depending on which of the two probabilities is higher.
 
@@ -46,11 +44,9 @@ The rules of $$d$$-separation make it clear that in this Bayes' net, each $$F_i$
 
 Indeed, in cases where the number of features is sufficiently low, it's common to make more assumptions about relationships between features to generate a better model (corresponding to adding edges to your Bayes' net). With this model, making predictions for unknown data points amounts to running inference on our Bayes' net. We have observed values for $$F_1, \dots, F_n$$ and want to choose the value of $$Y$$ that has the highest probability conditioned on these features:
 
-$$
-\text{prediction}(f_1, \cdots, f_n) = \underset{y}{\text{argmax}}~P(Y=y \mid F_1=f_1, \ldots, F_N = f_n) \\
+$$\text{prediction}(f_1, \cdots, f_n) = \underset{y}{\text{argmax}}~P(Y=y \mid F_1=f_1, \ldots, F_N = f_n) \\
 = \underset{y}{\text{argmax}}~P(Y=y, F_1=f_1, \ldots, F_N = f_n) \\
-= \underset{y}{\text{argmax}}~P(Y=y) \prod_{i=1}^n P(F_i = f_i \mid Y=y)
-$$
+= \underset{y}{\text{argmax}}~P(Y=y) \prod_{i=1}^n P(F_i = f_i \mid Y=y)$$
 
 The first step is because the highest probability class will be the same in the normalized or unnormalized distribution, and the second comes directly from the Naive Bayes' independence assumption that features are independent given the class label (as seen in the graphical model structure).
 
@@ -60,29 +56,23 @@ Generalizing away from a spam filter, assume now that there are $$k$$ class labe
 <p>
 </p>
 
-$$
-P(Y, F_1 = f_1, \dots, F_n = f_n) =
+$$P(Y, F_1 = f_1, \dots, F_n = f_n) =
 \begin{bmatrix}
 P(Y = y_1, F_1 = f_1, \dots, F_n = f_n) \\
 P(Y = y_2, F_1 = f_1, \dots, F_n = f_n) \\
 \vdots \\
 P(Y = y_k, F_1 = f_1, \dots, F_n = f_n)
-\end{bmatrix}
-$$
-$$
-= \begin{bmatrix}
+\end{bmatrix}$$
+$$= \begin{bmatrix}
 P(Y = y_1)\prod_i P(F_i = f_i | Y = y_1) \\
 P(Y = y_2)\prod_i P(F_i = f_i | Y = y_2) \\
 \vdots \\
 P(Y = y_k)\prod_i P(F_i = f_i | Y = y_k)
-\end{bmatrix}
-$$
+\end{bmatrix}$$
 
 Our prediction for the class label corresponding to the feature vector $$F$$ is simply the label corresponding to the maximum value in the above computed vector:
 
-$$
-\text{prediction}(F) = \underset{y_i}{\text{argmax}}~P(Y = y_i)\prod_j P(F_j = f_j | Y = y_i)
-$$
+$$\text{prediction}(F) = \underset{y_i}{\text{argmax}}~P(Y = y_i)\prod_j P(F_j = f_j | Y = y_i)$$
 
 We've now learned the basic theory behind the modeling assumptions of the Naive Bayes classifier and how to make predictions with one, but have yet to touch on how exactly we learn the conditional probability tables used in our Bayes' net from the input data. This will have to wait for our next topic of discussion, **parameter estimation**.
 
@@ -102,43 +92,31 @@ The first two assumptions above are often referred to as **independent, identica
 
 Let's now define the **likelihood** $$\mathcal{L}(\theta)$$ of our sample, a function which represents the probability of having drawn our sample from our distribution. For a fixed sample $$x_1, \ldots, x_N$$, the likelihood is just a function of $$\theta$$:
 
-$$
-\mathcal{L}(\theta) = P_{\theta}(x_1, \ldots, x_N)
-$$
+$$\mathcal{L}(\theta) = P_{\theta}(x_1, \ldots, x_N)$$
 
 Using our simplifying assumption that the samples $$x_i$$ are i.i.d., the likelihood function can be re-expressed as follows:
 
-$$
-\mathcal{L}(\theta) = \prod_{i=1}^N P_{\theta}(x_i)
-$$
+$$\mathcal{L}(\theta) = \prod_{i=1}^N P_{\theta}(x_i)$$
 
 How can we find the value of $$\theta$$ that maximizes this function? This will be the value of $$\theta$$ that best explains the data we saw. Recall from calculus that at points where a function's maxima and minima are realized, its first derivative with respect to each of its inputs (also known as the function's **gradient**) must be equal to zero. Hence, the maximum likelihood estimate for $$\theta$$ is a value that satisfies the following equation:
 
-$$
-\frac{\partial}{\partial\theta} \mathcal{L}(\theta) = 0
-$$
+$$\frac{\partial}{\partial\theta} \mathcal{L}(\theta) = 0$$
 
 Let's go through an example to make this concept more concrete. Say you have a bag filled with red and blue balls and don't know how many of each there are. You draw samples by taking a ball out of the bag, noting the color, then putting the ball back in (sampling with replacement). Drawing a sample of three balls from this bag yields `red`, `red`, `blue`. This seems to imply that we should infer that $$\frac{2}{3}$$ of the balls in the bag are red and $$\frac{1}{3}$$ of the balls are blue. We'll assume that each ball being taken out of the bag will be red with probability $$\theta$$ and blue with probability $$1 - \theta$$, for some value $$\theta$$ that we want to estimate (this is known as a Bernoulli distribution):
 
-$$
-P_{\theta}(x_i) =
+$$P_{\theta}(x_i) =
 \begin{cases}
 \theta & \text{if } x_i = \text{red} \\
 1 - \theta & \text{if } x_i = \text{blue}
-\end{cases}
-$$
+\end{cases}$$
 
 The likelihood of our sample is then:
 
-$$
-\mathcal{L}(\theta) = \prod_{i=1}^3 P_{\theta}(x_i) = P_{\theta}(x_1 = \text{red}) \cdot P_{\theta}(x_2 = \text{red}) \cdot P_{\theta}(x_3 = \text{blue}) = \theta^2 \cdot (1 - \theta)
-$$
+$$\mathcal{L}(\theta) = \prod_{i=1}^3 P_{\theta}(x_i) = P_{\theta}(x_1 = \text{red}) \cdot P_{\theta}(x_2 = \text{red}) \cdot P_{\theta}(x_3 = \text{blue}) = \theta^2 \cdot (1 - \theta)$$
 
 The final step is to set the derivative of the likelihood to $$0$$ and solve for $$\theta$$:
 
-$$
-\frac{\partial}{\partial\theta} \mathcal{L}(\theta) = \frac{\partial}{\partial\theta} \left( \theta^2 \cdot (1 - \theta) \right) = \theta (2 - 3\theta) = 0
-$$
+$$\frac{\partial}{\partial\theta} \mathcal{L}(\theta) = \frac{\partial}{\partial\theta} \left( \theta^2 \cdot (1 - \theta) \right) = \theta (2 - 3\theta) = 0$$
 
 Solving this equation for $$\theta$$ yields $$\theta = \frac{2}{3}$$, which intuitively makes sense! (There's a second solution, too, $$\theta = 0$$ -- but this corresponds to a minimum of the likelihood function, as $$\mathcal{L}(0) = 0 < \mathcal{L}(\frac{2}{3}) = \frac{4}{27}$$.)
 
@@ -159,71 +137,43 @@ Now within each conditional probability table $$P(F_i | Y)$$, note that we have 
 <p>
 </p>
 
-$$
-\mathcal{L}(\theta) = \prod_{j=1}^{N_h}P(F_i = f_i^{(j)}| Y = ham) = \prod_{j=1}^{N_h}\theta^{f_i^{(j)}}(1 - \theta)^{1 - f_i^{(j)}}
-$$
+$$\mathcal{L}(\theta) = \prod_{j=1}^{N_h}P(F_i = f_i^{(j)}| Y = ham) = \prod_{j=1}^{N_h}\theta^{f_i^{(j)}}(1 - \theta)^{1 - f_i^{(j)}}$$
 
 <p>
 </p>
 The second step comes from a small mathematical trick: if $$f_i^{(j)} = 1$$ then 
 
-$$
-P(F_i = f_i^{(j)}| Y = ham) = \theta^1(1 - \theta)^0 = \theta
-$$ 
+$$P(F_i = f_i^{(j)}| Y = ham) = \theta^1(1 - \theta)^0 = \theta$$ 
 
 and similarly if $$f_i^{(j)} = 0$$ then 
 
-$$
-P(F_i = f_i^{(j)}| Y = ham) = \theta^0(1 - \theta)^1 = (1 - \theta)
-$$
+$$P(F_i = f_i^{(j)}| Y = ham) = \theta^0(1 - \theta)^1 = (1 - \theta)$$
 
 In order to compute the maximum likelihood estimate for $$\theta$$, recall that the next step is to compute the derivative of $$\mathcal{L}(\theta)$$ and set it equal to $$0$$. Attempting this proves quite difficult, as it's no simple task to isolate and solve for $$\theta$$. Instead, we'll employ a trick that's very common in maximum likelihood derivations, and that's to instead find the value of $$\theta$$ that maximizes the $$\log$$ of the likelihood function. Because $$\log(x)$$ is a strictly increasing function (sometimes referred to as a **monotonic transformation**), finding a value that maximizes $$\log \mathcal{L}(\theta)$$ will also maximize $$\mathcal{L}(\theta)$$. The expansion of $$\log{\mathcal{L}(\theta)}$$ is below:
 
-$$
-\log{\mathcal{L}(\theta)} = \log\bigg(\prod_{j=1}^{N_h}\theta^{f_i^{(j)}}(1 - \theta)^{1 - f_i^{(j)}}\bigg)
-$$
+$$\log{\mathcal{L}(\theta)} = \log\bigg(\prod_{j=1}^{N_h}\theta^{f_i^{(j)}}(1 - \theta)^{1 - f_i^{(j)}}\bigg)$$
 
-$$
-= \sum_{j=1}^{N_h}\log\big(\theta^{f_i^{(j)}}(1 - \theta)^{1 - f_i^{(j)}}\big)
-$$
+$$= \sum_{j=1}^{N_h}\log\big(\theta^{f_i^{(j)}}(1 - \theta)^{1 - f_i^{(j)}}\big)$$
 
-$$
-= \sum_{j=1}^{N_h}\log\big(\theta^{f_i^{(j)}}\big) + \sum_{j=1}^{N_h}\log\big((1 - \theta)^{1 - f_i^{(j)}}\big)
-$$
+$$= \sum_{j=1}^{N_h}\log\big(\theta^{f_i^{(j)}}\big) + \sum_{j=1}^{N_h}\log\big((1 - \theta)^{1 - f_i^{(j)}}\big)$$
 
-$$
-= \log(\theta)\sum_{j=1}^{N_h}f_i^{(j)} + \log(1 - \theta)\sum_{j=1}^{N_h}(1 - f_i^{(j)})
-$$
+$$= \log(\theta)\sum_{j=1}^{N_h}f_i^{(j)} + \log(1 - \theta)\sum_{j=1}^{N_h}(1 - f_i^{(j)})$$
 
 Note that in the above derivation, we've used the properties of the log function that $$\log(a^c) = c \cdot \log(a)$$ and $$\log(ab) = \log(a) + \log(b)$$. Now we set the derivative of the log of the likelihood function to $$0$$ and solve for $$\theta$$:
 
-$$
-\frac{\partial}{\partial\theta}\bigg(\log(\theta)\sum_{j=1}^{N_h}f_i^{(j)} + \log(1 - \theta)\sum_{j=1}^{N_h}(1 - f_i^{(j)})\bigg) = 0
-$$
+$$\frac{\partial}{\partial\theta}\bigg(\log(\theta)\sum_{j=1}^{N_h}f_i^{(j)} + \log(1 - \theta)\sum_{j=1}^{N_h}(1 - f_i^{(j)})\bigg) = 0$$
 
-$$
-\frac{1}{\theta}\sum_{j=1}^{N_h}f_i^{(j)} - \frac{1}{(1 - \theta)}\sum_{j=1}^{N_h}(1 - f_i^{(j)}) = 0
-$$
+$$\frac{1}{\theta}\sum_{j=1}^{N_h}f_i^{(j)} - \frac{1}{(1 - \theta)}\sum_{j=1}^{N_h}(1 - f_i^{(j)}) = 0$$
 
-$$
-\frac{1}{\theta}\sum_{j=1}^{N_h}f_i^{(j)} = \frac{1}{(1 - \theta)}\sum_{j=1}^{N_h}(1 - f_i^{(j)})
-$$
+$$\frac{1}{\theta}\sum_{j=1}^{N_h}f_i^{(j)} = \frac{1}{(1 - \theta)}\sum_{j=1}^{N_h}(1 - f_i^{(j)})$$
 
-$$
-(1 - \theta)\sum_{j=1}^{N_h}f_i^{(j)} = \theta\sum_{j=1}^{N_h}(1 - f_i^{(j)})
-$$
+$$(1 - \theta)\sum_{j=1}^{N_h}f_i^{(j)} = \theta\sum_{j=1}^{N_h}(1 - f_i^{(j)})$$
 
-$$
-\sum_{j=1}^{N_h}f_i^{(j)} - \theta\sum_{j=1}^{N_h}f_i^{(j)} = \theta\sum_{j=1}^{N_h}1 - \theta\sum_{j=1}^{N_h}f_i^{(j)}
-$$
+$$\sum_{j=1}^{N_h}f_i^{(j)} - \theta\sum_{j=1}^{N_h}f_i^{(j)} = \theta\sum_{j=1}^{N_h}1 - \theta\sum_{j=1}^{N_h}f_i^{(j)}$$
 
-$$
-\sum_{j=1}^{N_h}f_i^{(j)} = \theta \cdot N_h
-$$
+$$\sum_{j=1}^{N_h}f_i^{(j)} = \theta \cdot N_h$$
 
-$$
-\theta = \frac{1}{N_h}\sum_{j=1}^{N_h}f_i^{(j)}
-$$
+$$\theta = \frac{1}{N_h}\sum_{j=1}^{N_h}f_i^{(j)}$$
 
 <p>
 </p>
@@ -234,15 +184,11 @@ We've arrived at a remarkably simple final result! According to our formula abov
 
 Though maximum likelihood estimation is a very powerful method for parameter estimation, bad training data can often lead to unfortunate consequences. For example, if every time the word "minute" appears in an email in our training set, that email is classified as spam, our trained model will learn that 
 
-$$
-P(F_{minute} = 1 | Y = ham) = 0
-$$
+$$P(F_{minute} = 1 | Y = ham) = 0$$
 
 Hence in an unseen email, if the word `minute` ever shows up, 
 
-$$
-P(Y = ham) \prod_i P(F_i | Y = ham) = 0
-$$
+$$P(Y = ham) \prod_i P(F_i | Y = ham) = 0$$
 
 and so your model will never classify any email containing the word `minute` as ham. This is a classic example of **overfitting**, or building a model that doesn't generalize well to previously unseen data. Just because a specific word didn't appear in an email in your training data, that doesn't mean that it won't appear in an email in your test data or in the real world.
 <p>
@@ -252,15 +198,11 @@ Overfitting with Naive Bayes' classifiers can be mitigated by **Laplace smoothin
 <p>
 </p>
 
-$$
-P_{MLE}(x) = \frac{count(x)}{N}
-$$
+$$P_{MLE}(x) = \frac{count(x)}{N}$$
 
 then the Laplace estimate with strength $$k$$ is
 
-$$
-P_{LAP, k}(x) = \frac{count(x) + k}{N + k|X|}
-$$
+$$P_{LAP, k}(x) = \frac{count(x) + k}{N + k|X|}$$
 
 <p>
 </p>
@@ -269,20 +211,14 @@ What does this equation say? We've made the assumption of seeing $$k$$ additiona
 <p>
 </p>
 
-$$
-P_{LAP, k}(x|y) = \frac{count(x, y) + k}{count(y) + k|X|}
-$$
+$$P_{LAP, k}(x|y) = \frac{count(x, y) + k}{count(y) + k|X|}$$
 
 There are two particularly notable cases for Laplace smoothing. The first is when $$k = 0$$, then 
 
-$$
-P_{LAP, 0}(x) = P_{MLE}(x)
-$$
+$$P_{LAP, 0}(x) = P_{MLE}(x)$$
 
 The second is the case where $$k = \infty$$. Observing a very large, infinite number of each outcome makes the results of your actual sample inconsequential and so your Laplace estimates imply that each outcome is equally likely. Indeed:
 
-$$
-P_{LAP, \infty}(x) = \frac{1}{|X|}
-$$
+$$P_{LAP, \infty}(x) = \frac{1}{|X|}$$
 
 The specific value of $$k$$ that's appropriate to use in your model is typically determined by trial-and-error. $$k$$ is a hyperparameter in your model, which means that you can set it to whatever you want and see which value yields the best prediction accuracy/performance on your validation data.

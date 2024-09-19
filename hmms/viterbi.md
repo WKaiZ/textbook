@@ -3,17 +3,19 @@ title: 8.3 The Viterbi Algorithm
 parent: 8. HMMs
 nav_order: 3
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 # 8.3 Viterbi Algorithm
 
-In the Forward Algorithm, we used recursion to solve for $$P(X_N|e_{1:N})$$, the probability distribution over states the system could inhabit given the evidence variables observed so far. Another important question related to Hidden Markov Models is: *What is the most likely sequence of hidden states the system followed given the observed evidence variables so far?* In other words, we would like to solve for $$ \arg\max_{x_{1:N}} P(x_{1:N}|e_{1:N}) = \arg\max_{x_{1:N}} P(x_{1:N},e_{1:N}) $$. This trajectory can also be solved for using dynamic programming with the Viterbi algorithm
+In the Forward Algorithm, we used recursion to solve for $$P(X_N|e_{1:N})$$, the probability distribution over states the system could inhabit given the evidence variables observed so far. Another important question related to Hidden Markov Models is: *What is the most likely sequence of hidden states the system followed given the observed evidence variables so far?* In other words, we would like to solve for $$\arg\max_{x_{1:N}} P(x_{1:N}|e_{1:N}) = \arg\max_{x_{1:N}} P(x_{1:N},e_{1:N})$$. This trajectory can also be solved for using dynamic programming with the Viterbi algorithm
 <p>
 </p>
 The algorithm consists of two passes: the first runs forward in time and computes the probability of the best path to each (state, time) tuple given the evidence observed so far. The second pass runs backwards in time: first it finds the terminal state that lies on the path with the highest probability, and then traverses backward through time along the path that leads into this state (which must be the best path).
 
 To visualize the algorithm, consider the following **state trellis**, a graph of states and transitions over time:
 
-![state trellis](../assets/images/trellis.png)
+<img src="{{ site.baseurl }}/assets/images/trellis.png" alt="State Trellis" />
 <p>
 </p>
 In this HMM with two possible hidden states, sun or rain, we would like to compute the highest probability path (assignment of a state for every timestep) from $$X_1$$ to $$X_N$$. The weights on an edge from $$X_{t-1}$$ to $$X_t$$ is equal to $$P(X_t|X_{t-1})P(E_t|X_t)$$, and the probability of a path is computed by taking the *product* of its edge weights. The first term in the weight formula represents how likely a particular transition is and the second term represents how well the observed evidence fits the resulting state.

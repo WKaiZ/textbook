@@ -3,6 +3,8 @@ title: "10.6 Forward Chaining"
 parent: 10. Logic
 nav_order: 6
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 10.6 Forward Chaining

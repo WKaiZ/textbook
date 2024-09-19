@@ -2,6 +2,8 @@
 title: 7. Decision Network and VPIs
 nav_order: 7
 has_children: true
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 7. Decision Network and VPIs

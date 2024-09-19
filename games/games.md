@@ -3,6 +3,8 @@ title: 3.1 Games
 parent: 3. Games
 nav_order: 1
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 3.1 Games
@@ -15,7 +17,7 @@ There are many different types of games. Games can have actions with either dete
 - *Chess* - In 1997, Deep Blue became the first computer agent to defeat human chess champion Garry Kasparov in a six-game match. Deep Blue was constructed to use extremely sophisticated methods to evaluate over 200 million positions per second. Current programs are even better, though less historic.
 - *Go* - The search space for Go is much larger than for chess, and most didn't believe Go computer agents would ever defeat human world champions for several years to come. However, AlphaGo, developed by Google, historically defeated Go champion Lee Sedol 4 games to 1 in March 2016.
 
-![Common Games](../assets/images/common-games.png)
+<img src="{{ site.baseurl }}/assets/images/common-games.png" alt="Common Games" />
 
 All of the world champion agents above use, at least to some degree, the adversarial search techniques that we're about to cover. As opposed to normal search, which returned a comprehensive plan, adversarial search returns a **strategy**, or **policy**, which simply recommends the best possible move given some configuration of our agent(s) and their adversaries. We'll soon see that such algorithms have the beautiful property of giving rise to behavior through computation — the computation we run is relatively simple in concept and widely generalizable, yet innately generates cooperation between agents on the same team as well as "outthinking" of adversarial agents.
 

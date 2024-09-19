@@ -3,6 +3,8 @@ title: 1.3 Uninformed Search
 parent: 1. Search
 nav_order: 3
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 1.3 Uninformed Search
@@ -45,7 +47,7 @@ When we have no knowledge of the location of goal states in our search tree, we 
 - *Description* - Depth-first search (DFS) is a strategy for exploration that always selects the *deepest* frontier node from the start node for expansion. 
 - *Frontier Representation* - Removing the deepest node and replacing it on the frontier with its children necessarily means the children are now the new deepest nodes - their depth is one greater than the depth of the previous deepest node. This implies that to implement DFS, we require a structure that always gives the most recently added objects highest priority. A last-in, first-out (LIFO) stack does exactly this, and is what is traditionally used to represent the frontier when implementing DFS.
 
-![DFS image](../assets/images/dfs.png)
+<img src="{{ site.baseurl }}/assets/images/dfs.png" alt="DFS" />
 
 - *Completeness* - Depth-first search is not complete. If there exist cycles in the state space graph, this inevitably means that the corresponding search tree will be infinite in depth. Hence, there exists the possibility that DFS will faithfully yet tragically get "stuck" searching for the deepest node in an infinite-sized search tree, doomed to never find a solution.
 - *Optimality* - Depth-first search simply finds the "leftmost" solution in the search tree without regard for path costs, and so is not optimal.
@@ -57,11 +59,11 @@ When we have no knowledge of the location of goal states in our search tree, we 
 - *Description* - Breadth-first search is a strategy for exploration that always selects the *shallowest* frontier node from the start node for expansion. 
 - *Frontier Representation* - If we want to visit shallower nodes before deeper nodes, we must visit nodes in their order of insertion. Hence, we desire a structure that outputs the oldest enqueued object to represent our frontier. For this, BFS uses a first-in, first-out (FIFO) queue, which does exactly this.
 
-![BFS image](../assets/images/bfs.png)
+<img src="{{ site.baseurl }}/assets/images/bfs.png" alt="BFS" />
 
 - *Completeness* - If a solution exists, then the depth of the shallowest node $$s$$ must be finite, so BFS must eventually search this depth. Hence, it's complete.
 - *Optimality* - BFS is generally not optimal because it simply does not take costs into consideration when determining which node to replace on the frontier. The special case where BFS is guaranteed to be optimal is if all edge costs are equivalent, because this reduces BFS to a special case of uniform cost search, which is discussed below.
-- *Time Complexity* - We must search $$1 + b + b^{2} + ... + b^{s}$$ nodes in the worst case, since we go through all nodes at every depth from 1 to $$s$$. Hence, the time complexity is $$O(bˢ)$$.
+- *Time Complexity* - We must search $$1 + b + b^{2} + ... + b^{s}$$ nodes in the worst case, since we go through all nodes at every depth from 1 to $$s$$. Hence, the time complexity is $$O(b^s)$$.
 - *Space Complexity* - The frontier, in the worst case, contains all the nodes in the level corresponding to the shallowest solution. Since the shallowest solution is located at depth $$s$$, there are $$O(b^{s})$$ nodes at this depth.
 
 ## 1.3.3 Uniform Cost Search
@@ -69,11 +71,11 @@ When we have no knowledge of the location of goal states in our search tree, we 
 - *Description* - Uniform cost search (UCS), our last strategy, is a strategy for exploration that always selects the *lowest cost* frontier node from the start node for expansion.
 - *Frontier Representation* - To represent the frontier for UCS, the choice is usually a heap-based priority queue, where the priority for a given enqueued node $$v$$ is the path cost from the start node to $$v$$, or the *backward cost* of $$v$$. Intuitively, a priority queue constructed in this manner simply reshuffles itself to maintain the desired ordering by path cost as we remove the current minimum cost path and replace it with its children.
 
-![UCS image](../assets/images/ucs.png)
+<img src="{{ site.baseurl }}/assets/images/ucs.png" alt="UCS" />
 
 - *Completeness* - Uniform cost search is complete. If a goal state exists, it must have some finite length shortest path; hence, UCS must eventually find this shortest length path.
 - *Optimality* - UCS is also optimal if we assume all edge costs are nonnegative. By construction, since we explore nodes in order of increasing path cost, we're guaranteed to find the lowest-cost path to a goal state. The strategy employed in Uniform Cost Search is identical to that of Dijkstra's algorithm, and the chief difference is that UCS terminates upon finding a solution state instead of finding the shortest path to all states. Note that having negative edge costs in our graph can make nodes on a path have decreasing length, ruining our guarantee of optimality. (See Bellman-Ford algorithm for a slower algorithm that handles this possibility)
-- *Time Complexity* - Let us define the optimal path cost as $$C*$$ and the minimal cost between two nodes in the state space graph as ε. Then, we must roughly explore all nodes at depths ranging from 1 to $$\frac{C*}{ε}$$, leading to an runtime of $$O(b^{\frac{C*}{ε}})$$.
-- *Space Complexity* - Roughly, the frontier will contain all nodes at the level of the cheapest solution, so the space complexity of UCS is estimated as $$O(b^{\frac{C*}{ε}})$$.
+- *Time Complexity* - Let us define the optimal path cost as $$C*$$ and the minimal cost between two nodes in the state space graph as $$\varepsilon$$. Then, we must roughly explore all nodes at depths ranging from 1 to $$\frac{C*}{\varepsilon}$$, leading to an runtime of $$O(b^{\frac{C*}{\varepsilon}})$$.
+- *Space Complexity* - Roughly, the frontier will contain all nodes at the level of the cheapest solution, so the space complexity of UCS is estimated as $$O(b^{\frac{C*}{\varepsilon}})$$.
 
 As a parting note about uninformed search, it's critical to note that the three strategies outlined above are fundamentally the same - differing only in expansion strategy, with their similarities being captured by the tree search pseudocode presented above.

@@ -2,6 +2,8 @@
 title: 5. RL
 nav_order: 5
 has_children: true
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 5. RL

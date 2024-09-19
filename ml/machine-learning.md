@@ -3,6 +3,8 @@ title: "9.1 Machine Learning"
 parent: 9. ML
 nav_order: 1
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 9.1 Machine Learning
@@ -13,15 +15,15 @@ There are many machine learning algorithms that deal with many different types o
 
 <div style="display: flex; justify-content: space-around; align-items: center;">
   <div style="text-align: center;">
-    <img src="../assets/images/train.png" alt="Image 1" style="width: 200px; height: 150px; object-fit: cover;">
+    <img src="{{ site.baseurl }}/assets/images/train.png" alt="Image 1" style="width: 200px; height: 150px; object-fit: cover;">
     <div><b>(a) Training</b></div>
   </div>
   <div style="text-align: center;">
-    <img src="../assets/images/validation.png" alt="Image 2" style="width: 200px; height: 150px; object-fit: cover;">
+    <img src="{{ site.baseurl }}/assets/images/validation.png" alt="Image 2" style="width: 200px; height: 150px; object-fit: cover;">
     <div><b>(b) Validation</b></div>
   </div>
   <div style="text-align: center;">
-    <img src="../assets/images/test.png" alt="Image 3" style="width: 200px; height: 150px; object-fit: cover;">
+    <img src="{{ site.baseurl }}/assets/images/test.png" alt="Image 3" style="width: 200px; height: 150px; object-fit: cover;">
     <div><b>(c) Testing</b></div>
   </div>
 </div>

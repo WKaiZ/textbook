@@ -3,6 +3,8 @@ title: 7.1 Utilities
 parent: 7. Decision Network and VPIs
 nav_order: 1
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 7.1 Utilities
@@ -49,19 +51,13 @@ In order for a set of preferences to be rational, they must follow the five **Ax
 
 If all five axioms are satisfied by an agent, then it's guaranteed that the agent's behavior is describable as a maximization of expected utility. More specifically, this implies that there exists a real-valued **utility function** $$U$$ that when implemented will assign greater utilities to preferred prizes, and also that the utility of a lottery is the expected value of the utility of the prize resulting from the lottery. These two statements can be summarized in two concise mathematical equivalences:
 
-$$
-U(A) \geq U(B) \Leftrightarrow A \succeq B
-$$
+$$U(A) \geq U(B) \Leftrightarrow A \succeq B$$
 
-$$
-U([p_1, S_1; ... ;p_n, S_n]) = \sum_i p_i U(S_i)
-$$
+$$U([p_1, S_1; ... ;p_n, S_n]) = \sum_i p_i U(S_i)$$
 
 If these constraints are met and an appropriate choice of algorithm is made, the agent implementing such a utility function is guaranteed to behave optimally. Let's discuss utility functions in greater detail with a concrete example. Consider the following lottery:
 
-$$
-L = [0.5, \$0; 0.5, \$1000]
-$$
+$$L = [0.5, \$0; 0.5, \$1000]$$
 
 This represents a lottery where you receive \$1000 with probability 0.5 and \$0 with probability 0.5. Now consider three agents $$A_1$$, $$A_2$$, and $$A_3$$ which have utility functions $$U_1(\$x) = x$$, $$U_2(\$x) = \sqrt{x}$$, and $$U_3(\$x) = x^2$$ respectively. If each of the three agents were faced with a choice between participating in the lottery and receiving a flat payment of \$500, which would they choose? The respective utilities for each agent of participating in the lottery and accepting the flat payment are listed in the following table:
 
@@ -73,16 +69,10 @@ This represents a lottery where you receive \$1000 with probability 0.5 and \$0 
 
 These utility values for the lotteries were calculated as follows, making use of equation (2) above:
 
-$$
-U_1(L) = U_1([0.5, \$0; 0.5, \$1000]) = 0.5 \cdot U_1(\$1000) + 0.5 \cdot U_1(\$0) = 0.5 \cdot 1000 + 0.5 \cdot 0 = \boxed{500}
-$$
+$$U_1(L) = U_1([0.5, \$0; 0.5, \$1000]) = 0.5 \cdot U_1(\$1000) + 0.5 \cdot U_1(\$0) = 0.5 \cdot 1000 + 0.5 \cdot 0 = \boxed{500}$$
 
-$$
-U_2(L) = U_2([0.5, \$0; 0.5, \$1000]) = 0.5 \cdot U_2(\$1000) + 0.5 \cdot U_2(\$0) = 0.5 \cdot \sqrt{1000} + 0.5 \cdot \sqrt{0} = \boxed{15.81}
-$$
+$$U_2(L) = U_2([0.5, \$0; 0.5, \$1000]) = 0.5 \cdot U_2(\$1000) + 0.5 \cdot U_2(\$0) = 0.5 \cdot \sqrt{1000} + 0.5 \cdot \sqrt{0} = \boxed{15.81}$$
 
-$$
-U_3(L) = U_1([0.5, \$0; 0.5, \$1000]) = 0.5 \cdot U_3(\$1000) + 0.5 \cdot U_3(\$0) = 0.5 \cdot 1000^2 + 0.5 \cdot 0^2 = \boxed{500000}
-$$
+$$U_3(L) = U_1([0.5, \$0; 0.5, \$1000]) = 0.5 \cdot U_3(\$1000) + 0.5 \cdot U_3(\$0) = 0.5 \cdot 1000^2 + 0.5 \cdot 0^2 = \boxed{500000}$$
 
 With these results, we can see that agent $$A_1$$ is indifferent between participating in the lottery and receiving the flat payment (the utilities for both cases are identical). Such an agent is known as **risk-neutral**. Similarly, agent $$A_2$$ prefers the flat payment to the lottery and is known as **risk-averse** and agent $$A_3$$ prefers the lottery to the flat payment and is known as **risk-seeking**.

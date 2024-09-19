@@ -18,7 +18,7 @@ def adjust_content(input_file):
     pattern = r'<img\s+src="{{ site.baseurl }}(/[^"]+)"\s+alt="([^"]*)"(?:\s+width="([^"]*)")?[^>]*>'
 
     # Replace the HTML-style image pattern with equivalent Markdown syntax with width attribute
-    new_content = re.sub(pattern, lambda m: f'![{m.group(2)}]({m.group(1).lstrip("/")}){{ width={m.group(3)} }}' if m.group(3) else f'![{m.group(2)}]({m.group(1).lstrip("/")})', content)
+    new_content = re.sub(pattern, lambda m: f'![{m.group(2)}]({m.group(1).lstrip("/")})', content)
 
     # Print the adjusted content to be piped into Pandoc
     print(new_content)

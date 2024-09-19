@@ -16,10 +16,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install Pandoc, Latex necessities, lua, and pdftk
+      - name: Install Pandoc, Latex necessities, and pdftk
         run: |
-          sudo apt-get install -y pandoc texlive texlive-latex-extra poppler-utils texlive-extra-utils lua5.3 pdftk
-
+          sudo apt-get install -y pandoc texlive texlive-latex-extra poppler-utils texlive-extra-utils pdftk
       - name: Install Python
         uses: actions/setup-python@v4
         with:
@@ -31,113 +30,157 @@ jobs:
           
           file_list=(
             "index.md"
-            "principles/index.md"
-            "principles/principles.md"
-            "memory-safety/index.md"
-            "memory-safety/x86.md"
-            "memory-safety/vulnerabilities.md"
-            "memory-safety/mitigations.md"
-            "crypto/index.md"
-            "crypto/intro.md"
-            "crypto/symmetric.md"
-            "crypto/hashes.md"
-            "crypto/macs.md"
-            "crypto/prng.md"
-            "crypto/key-exchange.md"
-            "crypto/public-key.md"
-            "crypto/signatures.md"
-            "crypto/certificates.md"
-            "crypto/passwords.md"
-            "crypto/case-studies.md"
-            "crypto/bitcoin.md"
-            "web/index.md"
-            "web/sqli.md"
-            "web/intro.md"
-            "web/sop.md"
-            "web/cookies.md"
-            "web/csrf.md"
-            "web/xss.md"
-            "web/ui-attacks.md"
-            "web/captchas.md"
-            "network/index.md"
-            "network/intro.md"
-            "network/arp.md"
-            "network/dhcp.md"
-            "network/wpa.md"
-            "network/bgp.md"
-            "network/transport.md"
-            "network/tls.md"
-            "network/dns.md"
-            "network/dnssec.md"
-            "network/dos.md"
-            "network/firewalls.md"
-            "network/intrusion-detection.md"
-            "network/abusing-intrusion-detection.md"
-            "network/malware.md"
-            "network/tor.md"
+            "search/index.md"
+            "search/agents.md"
+            "search/state.md"
+            "search/uninformed.md"
+            "search/informed.md"
+            "search/local.md"
+            "search/summary.md"
+            "csp/index.md"
+            "csp/csps.md"
+            "csp/solving.md"
+            "csp/filtering.md"
+            "csp/ordering.md"
+            "csp/local-search.md"
+            "csp/summary.md"
+            "games/index.md"
+            "games/games.md"
+            "games/minimax.md"
+            "games/expectimax.md"
+            "games/general.md"
+            "games/monte-carlo.md"
+            "games/summary.md"
+            "mdp/index.md"
+            "mdp/markov-decision-processes.md"
+            "mdp/solve.md"
+            "mdp/value-iteration.md"
+            "mdp/policies-iteration.md"
+            "mdp/summary.md"
+            "rl/index.md"
+            "rl/rl.md"
+            "rl/mbl.md"
+            "rl/mfl.md"
+            "rl/eae.md"
+            "rl/summary.md"
+            "bayes-nets/index.md"
+            "bayes-nets/approximate.md"
+            "vpis/index.md"
+            "vpis/utilities.md"
+            "vpis/decision-networks.md"
+            "vpis/vpi.md"
+            "hmms/index.md"
+            "hmms/markov.md"
+            "hmms/hmm.md"
+            "hmms/viterbi.md"
+            "hmms/particle-filtering.md"
+            "hmms/summary.md"
+            "ml/index.md"
+            "ml/machine-learning.md"
+            "ml/naive-bayes.md"
+            "ml/perceptrons.md"
+            "ml/binary.md"
+            "ml/linear-regression.md"
+            "ml/optimization.md"
+            "ml/logistic.md"
+            "ml/multi-class-logistic.md"
+            "ml/motivation.md"
+            "logic/index.md"
+            "logic/knowledge.md"
+            "logic/language.md"
+            "logic/propositional.md"
+            "logic/inference.md"
+            "logic/theorem.md"
+            "logic/forward.md"
+            "logic/first-order-logic.md"
+            "logic/first-order-logical-inference.md"
+            "logic/logical-agents.md"
+            "logic/summary.md"
           )
           for md_file in "${file_list[@]}"; do
             pdf_file_name="pdf_output/$(echo "$md_file" | sed 's/\//_/g' | sed 's/.md//g').pdf"
-            python3 pdf-generation/generate-pdf-edits.py "$md_file" | pandoc -V geometry:margin=1in -V colorlinks=true -V linkcolor=blue -V urlcolor=blue --lua-filter=pdf-generation/color-text-span.lua --pdf-engine=pdflatex -o "$pdf_file_name"
-
+            python3 pdf-generation/generate-pdf-edits.py "$md_file" | pandoc -V geometry:margin=1in -V colorlinks=true -V linkcolor=blue -V urlcolor=blue --pdf-engine=pdflatex -o "$pdf_file_name"
             if [ ! -f "$pdf_file_name" ]; then
               echo "Error: PDF file $pdf_file_name not created!" >&2
               exit 1
             fi
           done
 
+          echo "Completed making PDF files"
+
           pdftk \
             "pdf_output/index.pdf" \
-            "pdf_output/principles_index.pdf" \
-            "pdf_output/principles_principles.pdf" \
-            "pdf_output/memory-safety_index.pdf" \
-            "pdf_output/memory-safety_x86.pdf" \
-            "pdf_output/memory-safety_vulnerabilities.pdf" \
-            "pdf_output/memory-safety_mitigations.pdf" \
-            "pdf_output/crypto_index.pdf" \
-            "pdf_output/crypto_intro.pdf" \
-            "pdf_output/crypto_symmetric.pdf" \
-            "pdf_output/crypto_hashes.pdf" \
-            "pdf_output/crypto_macs.pdf" \
-            "pdf_output/crypto_prng.pdf" \
-            "pdf_output/crypto_key-exchange.pdf" \
-            "pdf_output/crypto_public-key.pdf" \
-            "pdf_output/crypto_signatures.pdf" \
-            "pdf_output/crypto_certificates.pdf" \
-            "pdf_output/crypto_passwords.pdf" \
-            "pdf_output/crypto_case-studies.pdf" \
-            "pdf_output/crypto_bitcoin.pdf" \
-            "pdf_output/web_index.pdf" \
-            "pdf_output/web_sqli.pdf" \
-            "pdf_output/web_intro.pdf" \
-            "pdf_output/web_sop.pdf" \
-            "pdf_output/web_cookies.pdf" \
-            "pdf_output/web_csrf.pdf" \
-            "pdf_output/web_xss.pdf" \
-            "pdf_output/web_ui-attacks.pdf" \
-            "pdf_output/web_captchas.pdf" \
-            "pdf_output/network_index.pdf" \
-            "pdf_output/network_intro.pdf" \
-            "pdf_output/network_arp.pdf" \
-            "pdf_output/network_dhcp.pdf" \
-            "pdf_output/network_wpa.pdf" \
-            "pdf_output/network_bgp.pdf" \
-            "pdf_output/network_transport.pdf" \
-            "pdf_output/network_tls.pdf" \
-            "pdf_output/network_dns.pdf" \
-            "pdf_output/network_dnssec.pdf" \
-            "pdf_output/network_dos.pdf" \
-            "pdf_output/network_firewalls.pdf" \
-            "pdf_output/network_intrusion-detection.pdf" \
-            "pdf_output/network_abusing-intrusion-detection.pdf" \
-            "pdf_output/network_malware.pdf" \
-            "pdf_output/network_tor.pdf" \
+            "pdf_output/search_index.pdf" \
+            "pdf_output/search_agents.pdf" \
+            "pdf_output/search_state.pdf" \
+            "pdf_output/search_uninformed.pdf" \
+            "pdf_output/search_informed.pdf" \
+            "pdf_output/search_local.pdf" \
+            "pdf_output/search_summary.pdf" \
+            "pdf_output/csp_index.pdf" \
+            "pdf_output/csp_csps.pdf" \
+            "pdf_output/csp_solving.pdf" \
+            "pdf_output/csp_filtering.pdf" \
+            "pdf_output/csp_ordering.pdf" \
+            "pdf_output/csp_local-search.pdf" \
+            "pdf_output/csp_summary.pdf" \
+            "pdf_output/games_index.pdf" \
+            "pdf_output/games_games.pdf" \
+            "pdf_output/games_minimax.pdf" \
+            "pdf_output/games_expectimax.pdf" \
+            "pdf_output/games_general.pdf" \
+            "pdf_output/games_monte-carlo.pdf" \
+            "pdf_output/games_summary.pdf" \
+            "pdf_output/mdp_index.pdf" \
+            "pdf_output/mdp_markov-decision-processes.pdf" \
+            "pdf_output/mdp_solve.pdf" \
+            "pdf_output/mdp_value-iteration.pdf" \
+            "pdf_output/mdp_policies-iteration.pdf" \
+            "pdf_output/mdp_summary.pdf" \
+            "pdf_output/rl_index.pdf" \
+            "pdf_output/rl_rl.pdf" \
+            "pdf_output/rl_mbl.pdf" \
+            "pdf_output/rl_mfl.pdf" \
+            "pdf_output/rl_eae.pdf" \
+            "pdf_output/rl_summary.pdf" \
+            "pdf_output/bayes-nets_index.pdf" \
+            "pdf_output/bayes-nets_approximate.pdf" \
+            "pdf_output/vpis_index.pdf" \
+            "pdf_output/vpis_utilities.pdf" \
+            "pdf_output/vpis_decision-networks.pdf" \
+            "pdf_output/vpis_vpi.pdf" \
+            "pdf_output/hmms_index.pdf" \
+            "pdf_output/hmms_markov.pdf" \
+            "pdf_output/hmms_hmm.pdf" \
+            "pdf_output/hmms_viterbi.pdf" \
+            "pdf_output/hmms_particle-filtering.pdf" \
+            "pdf_output/hmms_summary.pdf" \
+            "pdf_output/ml_index.pdf" \
+            "pdf_output/ml_machine-learning.pdf" \
+            "pdf_output/ml_naive-bayes.pdf" \
+            "pdf_output/ml_perceptrons.pdf" \
+            "pdf_output/ml_binary.pdf" \
+            "pdf_output/ml_linear-regression.pdf" \
+            "pdf_output/ml_optimization.pdf" \
+            "pdf_output/ml_logistic.pdf" \
+            "pdf_output/ml_multi-class-logistic.pdf" \
+            "pdf_output/ml_motivation.pdf" \
+            "pdf_output/logic_index.pdf" \
+            "pdf_output/logic_knowledge.pdf" \
+            "pdf_output/logic_language.pdf" \
+            "pdf_output/logic_propositional.pdf" \
+            "pdf_output/logic_inference.pdf" \
+            "pdf_output/logic_theorem.pdf" \
+            "pdf_output/logic_forward.pdf" \
+            "pdf_output/logic_first-order-logic.pdf" \
+            "pdf_output/logic_first-order-logical-inference.pdf" \
+            "pdf_output/logic_logical-agents.pdf" \
+            "pdf_output/logic_summary.pdf" \
             cat output "textbook_full_original.pdf"
       
       - name: Inject page numbers back into the pdf
         run: |
           mkdir -p pdf_numbering_output
-
           num_pages=$(pdftk textbook_full_original.pdf dump_data | grep NumberOfPages | awk '{print $2}')
           sed -i "s/161/$num_pages/" pdf-generation/numbering.tex
           
@@ -146,17 +189,13 @@ jobs:
             echo "Error: sed command failed" >&2
             exit 1
           fi
-
           pdflatex pdf-generation/numbering.tex
           pdftk numbering.pdf burst output pdf_numbering_output/number_%03d.pdf
           pdftk textbook_full_original.pdf burst output pdf_numbering_output/page_%03d.pdf
           for i in $(seq -f %03g 1 $num_pages) ; do pdftk pdf_numbering_output/page_$i.pdf background pdf_numbering_output/number_$i.pdf output pdf_numbering_output/new_$i.pdf; done
-
           pdftk pdf_numbering_output/new_???.pdf output textbook_full.pdf
           cp textbook_full.pdf textbook_full_cpy.pdf
-
           sed -i "s/$num_pages/161/" pdf-generation/numbering.tex
-
       - name: Upload PDF as an artifact
         uses: actions/upload-artifact@v4
         with:
@@ -175,7 +214,6 @@ jobs:
       - name: Check if PDF files are created
         run: |
           if [ -f "textbook_full.pdf" ]; then echo "textbook_full.pdf here"; else echo "textbook_full.pdf gone"; fi
-
       - name: Check git status
         run: git status
 

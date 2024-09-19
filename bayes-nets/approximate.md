@@ -1,19 +1,17 @@
 ---
-title: "6.1 Approximate Inference in Bayes Nets: Sampling"
+title: "6.7 Approximate Inference in Bayes Nets: Sampling"
 parent: 6. Bayes Nets
-nav_order: 1
+nav_order: 7
 layout: page
-header-includes:
-    \pagenumbering{gobble}
 ---
 
-# 6.1 Approximate Inference in Bayes Nets: Sampling
+# 6.7 Approximate Inference in Bayes Nets: Sampling
 
 An alternate approach for probabilistic reasoning is to implicitly calculate the probabilities for our query by simply counting samples. This will not yield the exact solution, as in IBE or Variable Elimination, but this approximate inference is often good enough, especially when taking into account massive savings in computation.
 
 For example, suppose we wanted to calculate $$P(+t \mid +e)$$. If we had a magic machine that could generate samples from our distribution, we could collect all samples for which $$E = +e$$, and then compute the fraction of those samples for which $$T = +t$$. We'd easily be able to compute any inference we'd want just by looking at the samples. Let's see some different methods for generating samples.
 
-## 6.1.1 Prior Sampling
+## 6.7.1 Prior Sampling
 
 Given a Bayes Net model, we can easily write a simulator. For example, consider the CPTs given below for the simplified model with only two variables T and C.
 
@@ -42,13 +40,13 @@ def get_sample():
 
 We call this simple approach **prior sampling**. The downside of this approach is that it may require the generation of a very large number of samples in order to perform analysis of unlikely scenarios. If we wanted to compute $$P(C \mid -t)$$, we'd have to throw away 99% of our samples.
 
-## 6.1.2 Rejection Sampling
+## 6.7.2 Rejection Sampling
 
 One way to mitigate the previously stated problem is to modify our procedure to early reject any sample inconsistent with our evidence. For example, for the query $$P(C \mid -t)$$, we'd avoid generating a value for C unless t is false. This still means we have to throw away most of our samples, but at least the bad samples we generate take less time to create. We call this approach **rejection sampling**.
 
 These two approaches work for the same reason: any valid sample occurs with the same probability as specified in the joint PDF.
 
-## 6.1.3 Likelihood Weighting
+## 6.7.3 Likelihood Weighting
 
 A more exotic approach is **likelihood weighting**, which ensures that we never generate a bad sample. In this approach, we manually set all variables equal to the evidence in our query. For example, if we wanted to compute $$P(C \mid -t)$$, we'd simply declare that $$t$$ is false. The problem here is that this may yield samples that are inconsistent with the correct distribution.
 
@@ -70,7 +68,7 @@ Then when we perform the usual counting process, we weight sample $$j$$ by $$w_j
 
 For all three of our sampling methods (prior sampling, rejection sampling, and likelihood weighting), we can get increasing amounts of accuracy by generating additional samples. However, of the three, likelihood weighting is the most computationally efficient, for reasons beyond the scope of this course.
 
-## 6.1.4 Gibbs Sampling
+## 6.7.4 Gibbs Sampling
 
 **Gibbs Sampling** is a fourth approach for sampling. In this approach, we first set all variables to some totally random value (not taking into account any CPTs). We then repeatedly pick one variable at a time, clear its value, and resample it given the values currently assigned to all other variables.
 
@@ -80,23 +78,4 @@ We will not prove this, but if we repeat this process enough times, our later sa
 
 The pseudocode for Gibbs Sampling is provided below.
 
-<img src="{{ site.baseurl }}/assets/images/Gibbs.png" alt="Gibbs Sampling" />
-
-## 6.1.5 Summary
-
-To summarize, Bayes' Nets is a powerful representation of joint probability distributions. Its topological structure encodes independence and conditional independence relationships, and we can use it to model arbitrary distributions to perform inference and sampling.
-
-In this note, we covered two approaches to probabilistic inference: exact inference and probabilistic inference (sampling). In exact inference, we are guaranteed the exact correct probability, but the amount of computation may be prohibitive.
-
-The exact inference algorithms covered were:
-- Inference By Enumeration
-- Variable Elimination
-
-We can turn to sampling to approximate solutions while using less compute.
-
-The sampling algorithms covered were:
-- Prior Sampling
-- Rejection Sampling
-- Likelihood Weighting
-- Gibbs Sampling
-
+![Gibbs Sampling](../assets/images/Gibbs.png)

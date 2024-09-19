@@ -23,6 +23,11 @@ This is the textbook for [CS 188: Introduction to Artificial Intelligence](https
 
 This PDF is automatically generated each time there is a [correction](#corrections) made to the website. This means that it is _completely possible_ for a downloaded copy to be not up-to-date. If your desired mode of the textbook is in PDF form, we recommend you regularly redownload in cases there were recent corrections made.
 
+## PDF Version
+[These notes are available as a PDF.](https://textbook.cs161.org/textbook_full.pdf)
+
+This PDF is automatically generated each time there is a [correction](#corrections) made to the website. This means that it is _completely possible_ for a downloaded copy to be not up-to-date. If your desired mode of the textbook is in PDF form, we recommend you regularly redownload in cases there were recent corrections made.
+
 ## Corrections
 
 As of the Fall 2024 semester, this textbook are still being actively maintained and updated.

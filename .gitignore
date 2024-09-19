@@ -217,3 +217,10 @@ pdf-generation/numbering.fdb_latexmk
 pdf-generation/numbering.fls
 pdf-generation/numbering.log
 pdf-generation/numbering.synctex.gz
+
+# PDF Page Numbering
+pdf-generation/numbering.aux
+pdf-generation/numbering.fdb_latexmk
+pdf-generation/numbering.fls
+pdf-generation/numbering.log
+pdf-generation/numbering.synctex.gz

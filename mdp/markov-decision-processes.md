@@ -69,6 +69,8 @@ we attempt to maximize **discounted utility**
 
 $$U([s_0, a_0, s_1, a_1, s_2, ...]) = R(s_0, a_0, s_1) + \gamma R(s_1, a_1, s_2) + \gamma^2 R(s_2, a_2, s_3) + ...$$
 
+<p>
+</p>
 Noting that the above definition of a discounted utility function looks similar to a **geometric series** with ratio $$\gamma$$, we can prove that it's guaranteed to be finite-valued as long as the constraint $$|\gamma| < 1$$ (where $$|n|$$ denotes the absolute value operator) is met through the following logic:
 
 $$U([s_0, s_1, s_2, ...]) = R(s_0, a_0, s_1) + \gamma R(s_1, a_1, s_2) + \gamma^2 R(s_2, a_2, s_3) + ...$$

@@ -53,7 +53,7 @@ $$\begin{aligned}
 &= {\operatorname{argmax}}\{slow: 2,\:\: fast: 3\} \\
 &= \boxed{fast}\\
 \pi_{1}(warm) &= {\operatorname{argmax}}\{slow: 0.5 \cdot [1 + 0.5 \cdot 2] + 0.5 \cdot [1 + 0.5 \cdot 2] ,\:\: fast: 1 \cdot [-10 + 0.5 \cdot 0]\} \\
-&= {\operatorname{argmax}}\{slow: 3,\:\: fast: -10\} \\
+&= {\operatorname{argmax}}\{slow: 2,\:\: fast: -10\} \\
 &= \boxed{slow} 
 \end{aligned}$$
 

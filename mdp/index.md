@@ -14,4 +14,4 @@ Edited by: Saathvik Selvan and Wesley Zheng
 
 Credit: Some sections adapted from the textbook *Artificial Intelligence: A Modern Approach*.
 
-Last updated: September 2024
+Last updated: October 2024

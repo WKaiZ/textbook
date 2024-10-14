@@ -52,17 +52,17 @@ $$f(n) = g(n) + h(n)
 
 Hence, such a heuristic reduces A* search to BFS, where all edge costs are equivalent. As we've already shown, BFS is not guaranteed to be optimal in the general case where edge weights are not constant.
 
-The condition required for optimality when using A* tree search is known as **admissibility**. The admissibility constraint states that the value estimated by an admissible heuristic is neither negative nor an overestimate. Defining h*(n) as the true optimal forward cost to reach a goal state from a given node n, we can formulate the admissibility constraint mathematically as follows:
+The condition required for optimality when using A* tree search is known as **admissibility**. The admissibility constraint states that the value estimated by an admissible heuristic is neither negative nor an overestimate. Defining $$h^*(n)$$ as the true optimal forward cost to reach a goal state from a given node n, we can formulate the admissibility constraint mathematically as follows:
 
-$$\forall n, 0 \leq h(n) \leq h*(n)$$
+$$\forall n, 0 \leq h(n) \leq h^*(n)$$
 
 **Theorem.** For a given search problem, if the admissibility constraint is satisfied by a heuristic function h, using A* tree search with h on that search problem will yield an optimal solution.
 
 *Proof.* Assume two reachable goal states are located in the search tree for a given search problem, an optimal goal $$A$$ and a suboptimal goal $$B$$. Some ancestor $$n$$ of $$A$$ (including perhaps $$A$$ itself) must currently be on the frontier, since $$A$$ is reachable from the start state. We claim $$n$$ will be selected for expansion before $$B$$, using the following three statements:
 
 1. $$g(A) < g(B)$$. Because $$A$$ is given to be optimal and $$B$$ is given to be suboptimal, we can conclude that $$A$$ has a lower backwards cost to the start state than $$B$$.
-2. $$h(A) = h(B) = 0$$, because we are given that our heuristic satisfies the admissibility constraint. Since both $$A$$ and $$B$$ are both goal states, the true optimal cost to a goal state from $$A$$ or $$B$$ is simply $$h*(n) = 0$$; hence $$0 \leq h(n) \leq 0$$.
-3. $$f(n) \leq f(A)$$, because, through admissibility of $$h$$, $$f(n)=g(n)+h(n) \leq g(n) + h*(n) = g(A) = f(A)$$. The total cost through node $$n$$ is at most the true backward cost of $$A$$, which is also the total cost of $$A$$.
+2. $$h(A) = h(B) = 0$$, because we are given that our heuristic satisfies the admissibility constraint. Since both $$A$$ and $$B$$ are both goal states, the true optimal cost to a goal state from $$A$$ or $$B$$ is simply $$h^*(n) = 0$$; hence $$0 \leq h(n) \leq 0$$.
+3. $$f(n) \leq f(A)$$, because, through admissibility of $$h$$, $$f(n)=g(n)+h(n) \leq g(n) + h^*(n) = g(A) = f(A)$$. The total cost through node $$n$$ is at most the true backward cost of $$A$$, which is also the total cost of $$A$$.
 
 We can combine statements 1. and 2. to conclude that $$f(A) < f(B)$$ as follows:
 
@@ -108,6 +108,6 @@ Dominance very intuitively captures the idea of one heuristic being better than 
 
 <img src="{{ site.baseurl }}/assets/images/semi-lattice.png" alt="Semi-lattice example" />
 
-As a general rule, the max function applied to multiple admissible heuristics will also always be admissible. This is simply a consequence of all values output by the heuristics for any given state being constrained by the admissibility condition, $$0 \leq h(n) \leq h*(n)$$. The maximum of numbers in this range must also fall in the same range. It's common practice to generate multiple admissible heuristics for any given search problem and compute the max over the values output by them to generate a heuristic that dominates (and hence is better than) all of them individually.
+As a general rule, the max function applied to multiple admissible heuristics will also always be admissible. This is simply a consequence of all values output by the heuristics for any given state being constrained by the admissibility condition, $$0 \leq h(n) \leq h^*(n)$$. The maximum of numbers in this range must also fall in the same range. It's common practice to generate multiple admissible heuristics for any given search problem and compute the max over the values output by them to generate a heuristic that dominates (and hence is better than) all of them individually.
 
 [^1]: In other courses, such as CS70 and CS170, you may have been introduced to "trees" and "graphs" in the graph theory context. Specifically, a tree being a type of graph that satisfies certain constraints (connected and acyclic). This is not the distinction between tree search and graph search that we make in this course.

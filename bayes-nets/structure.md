@@ -1,5 +1,5 @@
 ---
-title: "6.4 Structure of Bayes Nets"
+title: '6.4 Structure of Bayes Nets'
 parent: 6. Bayes Nets
 nav_order: 4
 layout: page
@@ -25,7 +25,8 @@ $$
 
 This relation between the joint distribution and the CPTs of the Bayes net works because of the conditional independence relationships given by the graph. We will prove this using an example.
 
-Let's revisit the previous example. We have the CPTs `P(B), P(E), P(A | B, E), P(J | A)` and `P(M | A)`, and the following graph:
+<p></p>
+Let's revisit the previous example. We have the CPTs $$P(B)$$ , $$P(E)$$ , $$P(A |B,E)$$ , $$P(J | A)$$ and $$P(M | A)$$ , and the following graph:
 
 ![Basic Bayes Net Examples](../assets/images/basic_bayes_nets.png)
 
@@ -41,10 +42,12 @@ $$
 P(B, E, A, J, M) = P(B)P(E | B)P(A | B, E)P(J | B, E, A)P(M | B, E, A, J)
 $$
 
-Notice that in the first equation every variable is represented in a CPT `P(var | Parents(var))`, while in the second equation, every variable is represented in a CPT `P(var | Parents(var), Ancestors(var))`.
+<p></p>
+Notice that in the first equation every variable is represented in a CPT $$P(var | Parents(var))$$ , while in the second equation, every variable is represented in a CPT $$P(var | Parents(var), Ancestors(var))$$ .
 
 We rely on the first conditional independence relation above, that **each node is conditionally independent of all its ancestor nodes in the graph, given all of its parents**[^1].
 
-Therefore, in a Bayes net, `P(var | Parents(var), Ancestors(var)) = P(var | Parents(var))`, so the two equations are equal. The conditional independences in a Bayes Net allow for multiple smaller conditional probability tables to represent the entire joint probability distribution.
+<p></p>
+Therefore, in a Bayes net, $$P(var | Parents(var), Ancestors(var)) = P(var | Parents(var))$$ , so the two equations are equal. The conditional independences in a Bayes Net allow for multiple smaller conditional probability tables to represent the entire joint probability distribution.
 
-[^1]: Elsewhere, the assumption may be defined as "a node is conditionally independent of its *non-descendants* given its parents." We always want to make the minimum assumption possible and prove what we need, so we will use the ancestors assumption.
+[^1]: Elsewhere, the assumption may be defined as "a node is conditionally independent of its _non-descendants_ given its parents." We always want to make the minimum assumption possible and prove what we need, so we will use the ancestors assumption.

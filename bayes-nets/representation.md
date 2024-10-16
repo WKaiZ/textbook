@@ -1,5 +1,5 @@
 ---
-title: "6.3 Bayesian Network Representation"
+title: '6.3 Bayesian Network Representation'
 parent: 6. Bayes Nets
 nav_order: 3
 layout: page
@@ -7,18 +7,21 @@ layout: page
 
 # 6.3 Bayesian Network Representation
 
-While inference by enumeration can compute probabilities for any query we might desire, representing an entire joint distribution in the memory of a computer is impractical for real problems — if each of `n` variables we wish to represent can take on `d` possible values (it has a **domain** of size `d`), then our joint distribution table will have `d^n` entries, exponential in the number of variables and quite impractical to store!
+While inference by enumeration can compute probabilities for any query we might desire, representing an entire joint distribution in the memory of a computer is impractical for real problems — if each of $$n$$ variables we wish to represent can take on $$d$$ possible values (it has a **domain** of size $$d$$), then our joint distribution table will have $$d^n$$ entries, exponential in the number of variables and quite impractical to store!
 
 Bayes nets avoid this issue by taking advantage of the idea of conditional probability. Rather than storing information in a giant table, probabilities are instead distributed across a number of smaller conditional probability tables along with a **directed acyclic graph** (DAG) which captures the relationships between variables. The local probability tables and the DAG together encode enough information to compute any probability distribution that we could have computed given the entire large joint distribution. We will see how this works in the next section.
 
 We formally define a Bayes Net as consisting of:
 
-- A directed acyclic graph of nodes, one per variable `X`.
-- A conditional distribution for each node `P(X | A1 ... An)`, where `Ai` is the `i`th parent of `X`, stored as a **conditional probability table** or CPT. Each CPT has `n+2` columns: one for the values of each of the `n` parent variables `A1 ... An`, one for the values of `X`, and one for the conditional probability of `X` given its parents.
+<p></p>
+1.A directed acyclic graph of nodes, one per variable $$X$$.
+<p></p>
+2.A conditional distribution for each node $$P(X | A1 ... An)$$, where $$Ai$$ is the $$i$$th parent of $$X$$, stored as a **conditional probability table** or CPT. Each CPT has $$n+2$$ columns: one for the values of each of the $$n$$ parent variables $$A1 ... An$$, one for the values of $$X$$, and one for the conditional probability of $$X$$ given its parents.
+<p></p>
 
 The structure of the Bayes Net graph encodes conditional independence relations between different nodes. These conditional independences allow us to store multiple small tables instead of one large one.
 
-It is important to remember that the edges between Bayes Net nodes do not mean there is specifically a *causal* relationship between those nodes, or that the variables are necessarily dependent on one another. It just means that there may be *some* relationship between the nodes.
+It is important to remember that the edges between Bayes Net nodes do not mean there is specifically a _causal_ relationship between those nodes, or that the variables are necessarily dependent on one another. It just means that there may be _some_ relationship between the nodes.
 
 As an example of a Bayes Net, consider a model where we have five binary random variables described below:
 
@@ -32,7 +35,8 @@ Assume the alarm can go off if either a burglary or an earthquake occurs, and th
 
 ![Basic Bayes Nets Example](../assets/images/basic_bayes_nets.png)
 
-In this Bayes Net, we would store probability tables `P(B)`, `P(E)`, `P(A | B, E)`, `P(J | A)` and `P(M | A)`.
+<p></p>
+In this Bayes Net, we would store probability tables $$P(B)$$, $$P(E)$$, $$P(A | B, E)$$, $$P(J | A)$$ and $$P(M | A)$$.
 
 Given all of the CPTs for a graph, we can calculate the probability of a given assignment using the following rule:
 
@@ -40,7 +44,7 @@ $$
 P(X1, X2, ..., Xn) = \prod_{i=1}^n{P(X_i | parents(X_i))}
 $$
 
-For the alarm model above, we can actually calculate the probability of a joint probability as follows: 
+For the alarm model above, we can actually calculate the probability of a joint probability as follows:
 
 $$
 P(-b, -e, +a, +j, -m) = P(-b) \cdot P(-e) \cdot P(+a | -b, -e) \cdot P(+j | +a) \cdot P(-m | +a)

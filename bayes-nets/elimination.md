@@ -1,5 +1,5 @@
 ---
-title: "6.6 Exact Inference in Bayes Nets"
+title: '6.6 Exact Inference in Bayes Nets'
 parent: 6. Bayes Nets
 nav_order: 6
 layout: page
@@ -18,9 +18,9 @@ An alternate approach is to eliminate hidden variables one by one. To **eliminat
 1. Join (multiply together) all factors involving $$X$$.
 2. Sum out $$X$$.
 
-A **factor** is defined simply as an *unnormalized probability*. At all points during variable elimination, each factor will be proportional to the probability it corresponds to, but the underlying distribution for each factor won't necessarily sum to 1 as a probability distribution should. The pseudocode for variable elimination is here:
+A **factor** is defined simply as an _unnormalized probability_. At all points during variable elimination, each factor will be proportional to the probability it corresponds to, but the underlying distribution for each factor won't necessarily sum to 1 as a probability distribution should. The pseudocode for variable elimination is here:
 
-![Variable Elimination](img/VarElim.png)
+![Variable Elimination](../assets/images/VarElim.png)
 
 Let's make these ideas more concrete with an example. Suppose we have a model as shown below, where $$T$$, $$C$$, $$S$$, and $$E$$ can take on binary values. Here, $$T$$ represents the chance that an adventurer takes a treasure, $$C$$ represents the chance that a cage falls on the adventurer given that they take the treasure, $$S$$ represents the chance that snakes are released if an adventurer takes the treasure, and $$E$$ represents the chance that the adventurer escapes given information about the status of the cage and snakes.
 
@@ -47,6 +47,7 @@ Join the remaining factors, which gives $$f_5(+e, T) = f_4(+e, T) \cdot P(T)$$.
 Once we have $$f_5(+e, T)$$, we can easily compute $$P(T|+e)$$ by normalizing.
 
 When writing a factor that results from a join, we can either use factor notation like $$f_1(C, +e, T, S)$$, which ignores the conditioning bar and simply provides a list of variables that are included in this factor.
+
 <p>
 </p>
 Alternatively, we can write $$P(C, +e | T, S)$$, even if this is not guaranteed to be a valid probability distribution (e.g. the rows might not sum to 1). To derive this expression mechanically, note that all variables on the left-hand side of the conditioning bars in the original factors (here, $$C$$ in $$P(C|T)$$ and $$E$$ in $$P(E|C,S)$$) stay on the left-hand side of the bar. Then, all remaining variables (here, $$T$$ and $$S$$) go on the right-hand side of the bar.
@@ -64,6 +65,7 @@ P(C | T) P(+e | C, S) = \frac{P(T, C, S, +e)}{P(S, T)} = P(C, +e | T, S)
 $$
 
 While the variable elimination process is more involved conceptually, the maximum size of any factor generated is only 8 rows instead of 16, as it would be if we formed the entire joint PDF.
+
 <p>
 </p>
 An alternate way of looking at the problem is to observe that the calculation of $$P(T|+e)$$ can either be done through inference by enumeration as follows:
@@ -81,4 +83,3 @@ $$
 We can see that the equations are equivalent, except that in variable elimination we have moved terms that are irrelevant to the summations outside of each summation!
 
 As a final note on variable elimination, it's important to observe that it only improves on inference by enumeration if we are able to limit the size of the largest factor to a reasonable value.
-

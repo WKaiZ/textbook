@@ -27,7 +27,7 @@ jobs:
       - name: Generate PDFs from the textbook Markdown files
         run: |
           mkdir -p pdf_output
-          
+
           file_list=(
             "index.md"
             "search/index.md"
@@ -64,7 +64,14 @@ jobs:
             "rl/eae.md"
             "rl/summary.md"
             "bayes-nets/index.md"
+            "bayes-nets/probability.md"
+            "bayes-nets/inference.md"
+            "bayes-nets/representation.md"
+            "bayes-nets/structure.md"
+            "bayes-nets/d-separation.md"
+            "bayes-nets/elimination.md"
             "bayes-nets/approximate.md"
+            "bayes-nets/summary.md"
             "vpis/index.md"
             "vpis/utilities.md"
             "vpis/decision-networks.md"
@@ -144,7 +151,14 @@ jobs:
             "pdf_output/rl_eae.pdf" \
             "pdf_output/rl_summary.pdf" \
             "pdf_output/bayes-nets_index.pdf" \
+            "pdf_output/bayes-nets_probability.pdf" \
+            "pdf_output/bayes-nets_inference.pdf" \
+            "pdf_output/bayes-nets_representation.pdf" \
+            "pdf_output/bayes-nets_structure.pdf" \
+            "pdf_output/bayes-nets_d-separation.pdf" \
+            "pdf_output/bayes-nets_elimination.pdf" \
             "pdf_output/bayes-nets_approximate.pdf" \
+            "pdf_output/bayes-nets_summary.pdf" \
             "pdf_output/vpis_index.pdf" \
             "pdf_output/vpis_utilities.pdf" \
             "pdf_output/vpis_decision-networks.pdf" \
@@ -177,13 +191,13 @@ jobs:
             "pdf_output/logic_logical-agents.pdf" \
             "pdf_output/logic_summary.pdf" \
             cat output "textbook_full_original.pdf"
-      
+
       - name: Inject page numbers back into the pdf
         run: |
           mkdir -p pdf_numbering_output
           num_pages=$(pdftk textbook_full_original.pdf dump_data | grep NumberOfPages | awk '{print $2}')
           sed -i "s/161/$num_pages/" pdf-generation/numbering.tex
-          
+
           # Don't continue if the sed failed
           if [ $? -ne 0 ]; then
             echo "Error: sed command failed" >&2
@@ -210,7 +224,7 @@ jobs:
           rm textbook_full_cpy.pdf
           rm numbering.pdf
           rm numbering.aux
-      
+
       - name: Check if PDF files are created
         run: |
           if [ -f "textbook_full.pdf" ]; then echo "textbook_full.pdf here"; else echo "textbook_full.pdf gone"; fi

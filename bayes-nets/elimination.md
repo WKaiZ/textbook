@@ -22,11 +22,11 @@ An alternate approach is to eliminate hidden variables one by one. To **eliminat
 
 A **factor** is defined simply as an _unnormalized probability_. At all points during variable elimination, each factor will be proportional to the probability it corresponds to, but the underlying distribution for each factor won't necessarily sum to 1 as a probability distribution should. The pseudocode for variable elimination is here:
 
-![Variable Elimination](../assets/images/VarElim.png)
+<img src="{{ site.baseurl }}/assets/images/VarElim.png" alt="Variable Elimination" />
 
 Let's make these ideas more concrete with an example. Suppose we have a model as shown below, where $$T$$, $$C$$, $$S$$, and $$E$$ can take on binary values. Here, $$T$$ represents the chance that an adventurer takes a treasure, $$C$$ represents the chance that a cage falls on the adventurer given that they take the treasure, $$S$$ represents the chance that snakes are released if an adventurer takes the treasure, and $$E$$ represents the chance that the adventurer escapes given information about the status of the cage and snakes.
 
-![Variable Elimination](../assets/images/another_bayes_nets.png)
+<img src="{{ site.baseurl }}/assets/images/another_bayes_nets.png" alt="Variable Elimination" />
 
 <p>
 </p>

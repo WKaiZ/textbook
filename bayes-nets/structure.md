@@ -13,11 +13,11 @@ In this class, we will refer to two rules for Bayes Net independences that can b
 
 - **Each node is conditionally independent of all its ancestor nodes (non-descendants) in the graph, given all of its parents.**
 
-  ![Parents](../assets/images/parents.png)
+<img src="{{ site.baseurl }}/assets/images/parents.png" alt="Parents" />
 
 - **Each node is conditionally independent of all other variables given its Markov blanket.** A variable’s Markov blanket consists of parents, children, and children’s other parents.
 
-  ![Markov Blanket](../assets/images/blanket.png)
+<img src="{{ site.baseurl }}/assets/images/blanket.png" alt="Markov Blanket" />
 
 Using these tools, we can return to the assertion in the previous section: that we can get the joint distribution of all variables by joining the CPTs of the Bayes Net.
 
@@ -28,7 +28,7 @@ This relation between the joint distribution and the CPTs of the Bayes net works
 <p></p>
 Let's revisit the previous example. We have the CPTs $$P(B)$$ , $$P(E)$$ , $$P(A |B,E)$$ , $$P(J | A)$$ and $$P(M | A)$$ , and the following graph:
 
-![Basic Bayes Net Examples](../assets/images/basic_bayes_nets.png)
+<img src="{{ site.baseurl }}/assets/images/basic_bayes_nets.png" alt="Basic Bayes Net Examples" />
 
 For this Bayes net, we are trying to prove the following relation:
 

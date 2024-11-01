@@ -63,11 +63,11 @@ An analogous proof can be used to show the same thing for the case where $$X$$ h
 
 ## 6.4.2 Common Cause
 
-![Common Cause with no observations](../assets/images/cause_free.PNG)
+<img src="{{ site.baseurl }}/assets/images/cause_free.PNG" alt="Common Cause with no observations" />
 
 *Figure 3: Common Cause with no observations.*
 
-![Common Cause with Y observed](../assets/images/cause_observed.PNG)
+<img src="{{ site.baseurl }}/assets/images/cause_observed.PNG" alt="Common Cause with Y observed" />
 
 *Figure 4: Common Cause with Y observed.*
 
@@ -100,11 +100,11 @@ $$P(X | Z, y) = \frac{P(X, Z, y)}{P(Z, y)} = \frac{P(X|y) P(Z|y) P(y)}{P(Z|y) P(
 
 ## 6.4.3 Common Effect
 
-![Common Effect with no observations](../assets/images/effect_free.PNG)
+<img src="{{ site.baseurl }}/assets/images/effect_free.PNG" alt="Common Effect with no observations" />
 
 *Figure 5: Common Effect with no observations.*
 
-![Common Effect with Y observed](../assets/images/effect_observed.PNG)
+<img src="{{ site.baseurl }}/assets/images/effect_observed.PNG" alt="Common Effect with Y observed" />
 
 *Figure 6: Common Effect with Y observed.*
 
@@ -134,7 +134,7 @@ Common Effect can be viewed as ``opposite'' to Causal Chains and Common Cause â€
 
 This same logic applies when conditioning on descendants of $$Y$$ in the graph. If one of $$Y$$'s descendant nodes is observed, as in Figure 7, $$X$$ and $$Z$$ are not guaranteed to be independent.
 
-![Common Effect with child observations](../assets/images/effect_children.PNG)
+<img src="{{ site.baseurl }}/assets/images/effect_children.PNG" alt="Common Effect with child observations" />
 
 *Figure 7: Common Effect with child observations.*
 
@@ -171,8 +171,8 @@ Any path in a graph from $$X$$ to $$Y$$ can be decomposed into a set of 3 consec
 
 **Active triples**: We can enumerate all possibilities of active and inactive triples using the three canonical graphs we presented below in the figures.
 
-![Active triples](../assets/images/active.PNG){:width="49%"}
-![Inactive triples](../assets/images/inactive.PNG){:width="49%"}
+<img src="{{ site.baseurl }}/assets/images/active.PNG" alt="Active triples" />
+<img src="{{ site.baseurl }}/assets/images/inactive.PNG" alt="Inactive triples" />
 
 ## 6.4.5 Examples
 
@@ -193,7 +193,7 @@ $$R \perp\!\!\!\perp B | T'$$ -- Not guaranteed
 </p>
 $$R \perp\!\!\!\perp T' | T$$ -- Guaranteed
 
-![Example 2](../assets/images/lrbdtt.png){:width="50%"} 
+<img src="{{ site.baseurl }}/assets/images/lrbdtt.png" alt="Example 2" />
 
 This graph contains combinations of all three canonical graphs (can you list them all?). 
 
@@ -211,7 +211,7 @@ $$L \perp\!\!\!\perp B | T'$$ -- Not guaranteed
 </p>
 $$L \perp\!\!\!\perp B | T, R$$ -- Guaranteed
 
-![Example 3](../assets/images/rtds.png)
+<img src="{{ site.baseurl }}/assets/images/rtds.png" alt="Example 3" />
 
 This graph contains combinations of all three canonical graphs. 
 <p>

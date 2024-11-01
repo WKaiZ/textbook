@@ -3,6 +3,8 @@ title: '6.4 Structure of Bayes Nets'
 parent: 6. Bayes Nets
 nav_order: 4
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 6.4 Structure of Bayes Nets
@@ -19,9 +21,7 @@ In this class, we will refer to two rules for Bayes Net independences that can b
 
 Using these tools, we can return to the assertion in the previous section: that we can get the joint distribution of all variables by joining the CPTs of the Bayes Net.
 
-$$
-P(X_1, X_2, \dots, X_n) = \prod_{i=1}^n P(X_i | \text{parents}(X_i))
-$$
+$$P(X_1, X_2, \dots, X_n) = \prod_{i=1}^n P(X_i | \text{parents}(X_i))$$
 
 This relation between the joint distribution and the CPTs of the Bayes net works because of the conditional independence relationships given by the graph. We will prove this using an example.
 
@@ -32,15 +32,11 @@ Let's revisit the previous example. We have the CPTs $$P(B)$$ , $$P(E)$$ , $$P(A
 
 For this Bayes net, we are trying to prove the following relation:
 
-$$
-P(B, E, A, J, M) = P(B)P(E)P(A | B, E)P(J | A)P(M | A)
-$$
+$$P(B, E, A, J, M) = P(B)P(E)P(A | B, E)P(J | A)P(M | A)$$
 
 We can expand the joint distribution another way: using the chain rule. If we expand the joint distribution with topological ordering (parents before children), we get the following equation:
 
-$$
-P(B, E, A, J, M) = P(B)P(E | B)P(A | B, E)P(J | B, E, A)P(M | B, E, A, J)
-$$
+$$P(B, E, A, J, M) = P(B)P(E | B)P(A | B, E)P(J | B, E, A)P(M | B, E, A, J)$$
 
 <p></p>
 Notice that in the first equation every variable is represented in a CPT $$P(var | Parents(var))$$ , while in the second equation, every variable is represented in a CPT $$P(var | Parents(var), Ancestors(var))$$ .

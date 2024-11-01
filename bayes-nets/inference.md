@@ -3,6 +3,8 @@ title: '6.2 Probability Inference'
 parent: 6. Bayes Nets
 nav_order: 2
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 6.2 Probabilistic Inference

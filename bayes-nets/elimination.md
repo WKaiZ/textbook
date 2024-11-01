@@ -3,6 +3,8 @@ title: '6.6 Exact Inference in Bayes Nets'
 parent: 6. Bayes Nets
 nav_order: 6
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 6.6 Exact Inference in Bayes Nets
@@ -54,15 +56,11 @@ Alternatively, we can write $$P(C, +e | T, S)$$, even if this is not guaranteed 
 
 This approach to writing factors is grounded in repeated applications of the chain rule. In the example above, we know that we can't have a variable on both sides of the conditional bar. Also, we know:
 
-$$
-P(T, C, S, +e) = P(T) P(S | T)  P(C | T) P(+e | C, S) = P(S, T) P(C | T) P(+e | C, S)
-$$
+$$P(T, C, S, +e) = P(T) P(S | T)  P(C | T) P(+e | C, S) = P(S, T) P(C | T) P(+e | C, S)$$
 
 and so:
 
-$$
-P(C | T) P(+e | C, S) = \frac{P(T, C, S, +e)}{P(S, T)} = P(C, +e | T, S)
-$$
+$$P(C | T) P(+e | C, S) = \frac{P(T, C, S, +e)}{P(S, T)} = P(C, +e | T, S)$$
 
 While the variable elimination process is more involved conceptually, the maximum size of any factor generated is only 8 rows instead of 16, as it would be if we formed the entire joint PDF.
 
@@ -70,15 +68,11 @@ While the variable elimination process is more involved conceptually, the maximu
 </p>
 An alternate way of looking at the problem is to observe that the calculation of $$P(T|+e)$$ can either be done through inference by enumeration as follows:
 
-$$
-\alpha \sum_s{\sum_c{P(T)P(s|T)P(c|T)P(+e|c,s)}}
-$$
+$$\alpha \sum_s{\sum_c{P(T)P(s|T)P(c|T)P(+e|c,s)}}$$
 
 or by variable elimination as follows:
 
-$$
-\alpha P(T)\sum_s{P(s|T)\sum_c{P(c|T)P(+e|c,s)}}
-$$
+$$\alpha P(T)\sum_s{P(s|T)\sum_c{P(c|T)P(+e|c,s)}}$$
 
 We can see that the equations are equivalent, except that in variable elimination we have moved terms that are irrelevant to the summations outside of each summation!
 

@@ -3,6 +3,8 @@ title: '6.3 Bayesian Network Representation'
 parent: 6. Bayes Nets
 nav_order: 3
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 6.3 Bayesian Network Representation
@@ -40,15 +42,11 @@ In this Bayes Net, we would store probability tables $$P(B)$$, $$P(E)$$, $$P(A |
 
 Given all of the CPTs for a graph, we can calculate the probability of a given assignment using the following rule:
 
-$$
-P(X1, X2, ..., Xn) = \prod_{i=1}^n{P(X_i | parents(X_i))}
-$$
+$$P(X1, X2, ..., Xn) = \prod_{i=1}^n{P(X_i | parents(X_i))}$$
 
 For the alarm model above, we can actually calculate the probability of a joint probability as follows:
 
-$$
-P(-b, -e, +a, +j, -m) = P(-b) \cdot P(-e) \cdot P(+a | -b, -e) \cdot P(+j | +a) \cdot P(-m | +a)
-$$
+$$P(-b, -e, +a, +j, -m) = P(-b) \cdot P(-e) \cdot P(+a | -b, -e) \cdot P(+j | +a) \cdot P(-m | +a)$$
 
 We will see how this relation holds in the next section.
 

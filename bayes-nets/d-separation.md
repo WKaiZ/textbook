@@ -3,6 +3,8 @@ title: "6.5 D-Separation"
 parent: 6. Bayes Nets
 nav_order: 5
 layout: page
+header-includes:
+    \pagenumbering{gobble}
 ---
 
 # 6.4 D-Separation
@@ -22,44 +24,38 @@ We will present all three canonical cases of connected three-node two-edge Bayes
 *Figure 2: Causal Chain with Y observed.*
 
 Figure 1 is a configuration of three nodes known as a **causal chain**. It expresses the following representation of the joint distribution over $$X$$, $$Y$$, and $$Z$$:
-$$
-P(x, y, z) = P(z|y)P(y|x)P(x)
-$$
+
+$$P(x, y, z) = P(z|y)P(y|x)P(x)$$
+
 It's important to note that $$X$$ and $$Z$$ are not guaranteed to be independent, as shown by the following counterexample:
 
-$$
-P(y|x) = 
+$$P(y|x) = 
 \begin{cases} 
       1 & \text{if } x = y \\
       0 & \text{else }
-  \end{cases}
-$$
+  \end{cases}$$
 
-$$
-P(z|y) = 
+$$P(z|y) = 
 \begin{cases} 
       1 & \text{if } z = y \\
       0 & \text{else }
-  \end{cases}
-$$
+  \end{cases}$$
 
 <p>
 </p>
 In this case, $$P(z|x) = 1$$ if $$x = z$$ and $$0$$ otherwise, so $$X$$ and $$Z$$ are not independent.
 
 However, we can make the statement that $$X \perp\!\!\!\perp Z | Y$$, as in Figure 2. Recall that this conditional independence means:
-$$
-P(X | Z, Y) = P(X | Y)
-$$
+
+$$P(X | Z, Y) = P(X | Y)$$
+
 We can prove this statement as follows:
 
-$$
-P(X | Z, y) = \frac{P(X, Z, y)}{P(Z, y)}
+$$P(X | Z, y) = \frac{P(X, Z, y)}{P(Z, y)}
 = \frac{P(Z|y) P(y|X) P(X)}{\sum_{x} P(X, y, Z)}
 = \frac{P(Z|y) P(y|X) P(X)}{P(Z|y) \sum_{x} P(y|x)P(x)}
 = \frac{P(y|X) P(X)}{\sum_{x} P(y|x)P(x)}
-= P(X|y)
-$$
+= P(X|y)$$
 
 <p>
 </p>
@@ -77,26 +73,21 @@ An analogous proof can be used to show the same thing for the case where $$X$$ h
 
 Another possible configuration for a triple is the **common cause**. It expresses the following representation:
 
-$$
-P(x, y, z) = P(x|y)P(z|y)P(y)
-$$
+$$P(x, y, z) = P(x|y)P(z|y)P(y)$$
 
 Just like with the causal chain, we can show that $$X$$ is not guaranteed to be independent of $$Z$$ with the following counterexample distribution:
 
-$$
-P(x|y) = 
+$$P(x|y) = 
 \begin{cases} 
       1 & \text{if } x = y \\
       0 & \text{else }
-  \end{cases}
-$$
-$$
-P(z|y) = 
+  \end{cases}$$
+
+$$P(z|y) = 
 \begin{cases} 
       1 & \text{if } z = y \\
       0 & \text{else }
-  \end{cases}
-$$
+  \end{cases}$$
 
 <p>
 </p>
@@ -105,9 +96,7 @@ Then $$P(x|z) = 1$$ if $$x = z$$ and $$0$$ otherwise, so $$X$$ and $$Z$$ are not
 </p>
 But it is true that $$X \perp\!\!\!\perp Z | Y$$. That is, $$X$$ and $$Z$$ are independent if $$Y$$ is observed as in Figure 4. We can show this as follows:
 
-$$
-P(X | Z, y) = \frac{P(X, Z, y)}{P(Z, y)} = \frac{P(X|y) P(Z|y) P(y)}{P(Z|y) P(y)} = P(X|y)
-$$
+$$P(X | Z, y) = \frac{P(X, Z, y)}{P(Z, y)} = \frac{P(X|y) P(Z|y) P(y)}{P(Z|y) P(y)} = P(X|y)$$
 
 ## 6.4.3 Common Effect
 
@@ -121,30 +110,22 @@ $$
 
 It expresses the representation:
 
-$$
-P(x, y, z) = P(y|x,z)P(x)P(z)
-$$
+$$P(x, y, z) = P(y|x,z)P(x)P(z)$$
 
 In the configuration shown in Figure 5, $$X$$ and $$Z$$ are independent: $$X \perp\!\!\!\perp Z$$. However, they are not necessarily independent when conditioned on $$Y$$ (Figure 6). As an example, suppose all three are binary variables. $$X$$ and $$Z$$ are true and false with equal probability:
 
-$$
-P(X=true) = P(X=false) = 0.5
-$$
+$$P(X=true) = P(X=false) = 0.5$$
 
-$$
-P(Z=true) = P(Z=false) = 0.5
-$$
+$$P(Z=true) = P(Z=false) = 0.5$$
 
 and $$Y$$ is determined by whether $$X$$ and $$Z$$ have the same value:
 
-$$
-P(Y | X, Z) = 
+$$P(Y | X, Z) = 
 \begin{cases} 
   1 & \text{if } X = Z \text{ and } Y = true \\
   1 & \text{if } X \ne Z \text{ and } Y = false \\
   0 & \text{else}
-\end{cases}
-$$
+\end{cases}$$
 
 Then $$X$$ and $$Z$$ are independent if $$Y$$ is unobserved. But if $$Y$$ is observed, then knowing $$X$$ will tell us the value of $$Z$$, and vice-versa. So $$X$$ and $$Z$$ are *not* conditionally independent given $$Y$$.
 <p>

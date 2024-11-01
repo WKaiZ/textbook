@@ -178,7 +178,7 @@ Any path in a graph from $$X$$ to $$Y$$ can be decomposed into a set of 3 consec
 
 Here are some examples of applying the $$d$$-separation algorithm:
 
-<img src="{{ site.baseurl }}/assets/images/rbtt.PNG" alt="Example 1" />
+<img src="{{ site.baseurl }}/assets/images/rbtt.png" alt="Example 1" />
 
 This graph contains the common effect and causal chain canonical graphs. 
 

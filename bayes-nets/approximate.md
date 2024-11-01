@@ -1,5 +1,5 @@
 ---
-title: '6.7 Approximate Inference in Bayes Nets: Sampling'
+title: "6.7 Approximate Inference in Bayes Nets: Sampling"
 parent: 6. Bayes Nets
 nav_order: 7
 layout: page

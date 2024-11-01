@@ -64,7 +64,6 @@ jobs:
             "rl/eae.md"
             "rl/summary.md"
             "bayes-nets/index.md"
-            "bayes-nets/probability.md"
             "bayes-nets/inference.md"
             "bayes-nets/representation.md"
             "bayes-nets/structure.md"
@@ -151,7 +150,6 @@ jobs:
             "pdf_output/rl_eae.pdf" \
             "pdf_output/rl_summary.pdf" \
             "pdf_output/bayes-nets_index.pdf" \
-            "pdf_output/bayes-nets_probability.pdf" \
             "pdf_output/bayes-nets_inference.pdf" \
             "pdf_output/bayes-nets_representation.pdf" \
             "pdf_output/bayes-nets_structure.pdf" \

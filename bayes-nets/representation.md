@@ -35,7 +35,7 @@ As an example of a Bayes Net, consider a model where we have five binary random 
 
 Assume the alarm can go off if either a burglary or an earthquake occurs, and that Mary and John will call if they hear the alarm. We can represent these dependencies with the graph shown below.
 
-![Basic Bayes Nets Example](../assets/images/basic_bayes_nets.png)
+<img src="{{ site.baseurl }}/assets/images/basic_bayes_nets.png" alt="Basic Bayes Nets Example" />
 
 <p></p>
 In this Bayes Net, we would store probability tables $$P(B)$$, $$P(E)$$, $$P(A | B, E)$$, $$P(J | A)$$ and $$P(M | A)$$.

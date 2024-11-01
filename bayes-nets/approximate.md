@@ -80,4 +80,4 @@ We will not prove this, but if we repeat this process enough times, our later sa
 
 The pseudocode for Gibbs Sampling is provided below.
 
-![Gibbs Sampling](../assets/images/Gibbs.png)
+<img src="{{ site.baseurl }}/assets/images/Gibbs.png" alt="Gibbs Sampling" />

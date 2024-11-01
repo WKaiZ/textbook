@@ -17,10 +17,10 @@ We will present all three canonical cases of connected three-node two-edge Bayes
 
 ## 6.4.1 Causal Chains
 
-![Causal Chain with no observations](../assets/images/chain_free.PNG)
+<img src="{{ site.baseurl }}/assets/images/chain_free.PNG" alt="Causal Chain with no observations" />
 *Figure 1: Causal Chain with no observations.*
 
-![Causal Chain with Y observed](../assets/images/chain_observed.PNG)
+<img src="{{ site.baseurl }}/assets/images/chain_observed.PNG" alt="Causal Chain with Y observed" />
 *Figure 2: Causal Chain with Y observed.*
 
 Figure 1 is a configuration of three nodes known as a **causal chain**. It expresses the following representation of the joint distribution over $$X$$, $$Y$$, and $$Z$$:
@@ -178,7 +178,7 @@ Any path in a graph from $$X$$ to $$Y$$ can be decomposed into a set of 3 consec
 
 Here are some examples of applying the $$d$$-separation algorithm:
 
-![Example 1](../assets/images/rbtt.png)
+<img src="{{ site.baseurl }}/assets/images/rbtt.PNG" alt="Example 1" />
 
 This graph contains the common effect and causal chain canonical graphs. 
 

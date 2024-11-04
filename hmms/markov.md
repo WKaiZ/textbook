@@ -65,7 +65,7 @@ This equation should make some intuitive sense — to compute the distribution o
 |    sun    |     0.8      |
 |   rain    |     0.2      |
 
-| $$ W\_{i+1} $$ | $$ W_i $$ | $$ P(W\_{i+1} \| W_i) $$ |
+| $$ W_{i+1} $$ | $$ W_i $$ | $$ P(W_{i+1} \| W_i) $$ |
 | :------------: | :-------: | :----------------------: |
 |      sun       |    sun    |           0.6            |
 |      rain      |    sun    |           0.4            |
@@ -74,8 +74,10 @@ This equation should make some intuitive sense — to compute the distribution o
 
 Using the mini-forward algorithm, we can compute $$ P(W_1) $$ as follows:
 
+<p></p>
 $$P(W_1 = sun) = \sum_{w_0}P(W_1 = sun | w_0)P(w_0)$$ $$= P(W_1 = sun | W_0 = sun)P(W_0 = sun) + P(W_1 = sun | W_0 = rain)P(W_0 = rain)$$ $$= 0.6 \cdot 0.8 + 0.1 \cdot 0.2 = \boxed{0.5}$$
 
+<p></p>
 $$P(W_1 = rain) = \sum_{w_0}P(W_1 = rain | w_0)P(w_0)$$ $$= P(W_1 = rain | W_0 = sun)P(W_0 = sun) + P(W_1 = rain | W_0 = rain)P(W_0 = rain)$$ $$= 0.4 \cdot 0.8 + 0.9 \cdot 0.2 = \boxed{0.5}$$
 
 Hence our distribution for $$P(W_1)$$ is:
@@ -99,8 +101,10 @@ $$P(W_{t+1}) = P(W_t) = \sum_{w_t}P(W_{t+1} | w_t)P(w_t)$$
 
 For our weather example, this gives us the following two equations:
 
+<p></p>
 $$P(W_t = sun) = P(W_{t+1} = sun | W_t = sun)P(W_t = sun) + P(W_{t+1} = sun | W_t = rain)P(W_t = rain)$$ $$= 0.6 \cdot P(W_t = sun) + 0.1 \cdot P(W_t = rain)$$
 
+<p></p>
 $$P(W_t = rain) = P(W_{t+1} = rain | W_t = sun)P(W_t = sun) + P(W_{t+1} = rain | W_t = rain)P(W_t = rain)$$ $$= 0.4 \cdot P(W_t = sun) + 0.9 \cdot P(W_t = rain)$$
 
 Now we have two equations in two unknowns. To solve, note that the sum of these probabilities must equal one, i.e.

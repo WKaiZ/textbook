@@ -2,8 +2,7 @@
 title: 6. Bayes Nets
 nav_order: 6
 has_children: true
-header-includes:
-    \pagenumbering{gobble}
+header-includes: \pagenumbering{gobble}
 ---
 
 # 6. Bayes Nets
@@ -12,6 +11,6 @@ Author: Josh Hug and Jacky Liang
 
 Edited by: Regina Wang, Pranav Muralikrishnan, and Wesley Zheng
 
-Credit: Some sections adapted from the textbook *Artificial Intelligence: A Modern Approach*.
+Credit: Some sections adapted from the textbook _Artificial Intelligence: A Modern Approach_.
 
-Last updated: September 2024
+Last updated: November 2024

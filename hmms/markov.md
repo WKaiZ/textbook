@@ -3,8 +3,7 @@ title: 8.1 Markov Models
 parent: 8. HMMs
 nav_order: 1
 layout: page
-header-includes:
-    \pagenumbering{gobble}
+header-includes: \pagenumbering{gobble}
 ---
 
 # 8.1 Markov Models
@@ -28,6 +27,7 @@ However, with our assumption that the Markov property holds true and $$W_0 \perp
 </p>
 
 $$P(W_0, W_1, W_2) = P(W_0)P(W_1 | W_0)P(W_2 | W_1)$$
+
 <p>
 </p>
 And we have everything we need to calculate this from the Markov model. More generally, Markov models make the following independence assumption at each timestep: $$W_{i+1} \perp \{W_0, \dots, W_{i-1}\} | W_i$$. This allows us to reconstruct the joint distribution for the first $$n + 1$$ variables via the chain rule as follows:
@@ -35,6 +35,7 @@ And we have everything we need to calculate this from the Markov model. More gen
 </p>
 
 $$P(W_0, W_1, \dots, W_n) = P(W_0)P(W_1|W_0)P(W_2|W_1)\dots P(W_n|W_{n-1}) = P(W_0)\prod_{i=0}^{n-1}P(W_{i+1}|W_{i})$$
+
 <p>
 </p>
 A final assumption that's typically made in Markov models is that the transition model is **stationary**. In other words, for all values of $$i$$ (all timesteps), $$P(W_{i+1} | W_i)$$ is identical. This allows us to represent a Markov model with only two tables: one for $$P(W_0)$$ and one for $$P(W_{i+1} | W_i)$$.
@@ -60,33 +61,29 @@ $$\boxed{P(W_{i+1}) = \sum_{w_i}P(W_{i+1}|w_i)P(w_i)}$$
 This equation should make some intuitive sense — to compute the distribution of the weather at timestep $$i + 1$$, we look at the probability distribution at timestep $$i$$ given by $$P(W_i)$$ and "advance" this model a timestep with our transition model $$P(W_{i+1} | W_i)$$. With this equation, we can iteratively compute the distribution of the weather at any timestep of our choice by starting with our initial distribution $$P(W_0)$$ and using it to compute $$P(W_1)$$, then in turn using $$P(W_1)$$ to compute $$P(W_2)$$, and so on. Let's walk through an example, using the following initial distribution and transition model:
 
 | $$ W_0 $$ | $$ P(W_0) $$ |
-|:-------------:|:----------------:|
-| sun           | 0.8              |
-| rain          | 0.2              |
+| :-------: | :----------: |
+|    sun    |     0.8      |
+|   rain    |     0.2      |
 
-| $$ W_{i+1} $$ | $$ W_i $$ | $$ P(W_{i+1} \| W_i) $$ |
-|:-----------------:|:-------------:|:--------------------------:|
-| sun               | sun           | 0.6                        |
-| rain              | sun           | 0.4                        |
-| sun               | rain          | 0.1                        |
-| rain              | rain          | 0.9                        |
+| $$ W\_{i+1} $$ | $$ W_i $$ | $$ P(W\_{i+1} \| W_i) $$ |
+| :------------: | :-------: | :----------------------: |
+|      sun       |    sun    |           0.6            |
+|      rain      |    sun    |           0.4            |
+|      sun       |   rain    |           0.1            |
+|      rain      |   rain    |           0.9            |
 
 Using the mini-forward algorithm, we can compute $$ P(W_1) $$ as follows:
 
-$$P(W_1 = sun) = \sum_{w_0}P(W_1 = sun | w_0)P(w_0)$$
-$$= P(W_1 = sun | W_0 = sun)P(W_0 = sun) + P(W_1 = sun | W_0 = rain)P(W_0 = rain)$$
-$$= 0.6 \cdot 0.8 + 0.1 \cdot 0.2 = \boxed{0.5}$$
+$$P(W_1 = sun) = \sum_{w_0}P(W_1 = sun | w_0)P(w_0)$$ $$= P(W_1 = sun | W_0 = sun)P(W_0 = sun) + P(W_1 = sun | W_0 = rain)P(W_0 = rain)$$ $$= 0.6 \cdot 0.8 + 0.1 \cdot 0.2 = \boxed{0.5}$$
 
-$$P(W_1 = rain) = \sum_{w_0}P(W_1 = rain | w_0)P(w_0)$$
-$$= P(W_1 = rain | W_0 = sun)P(W_0 = sun) + P(W_1 = rain | W_0 = rain)P(W_0 = rain)$$
-$$= 0.4 \cdot 0.8 + 0.9 \cdot 0.2 = \boxed{0.5}$$
+$$P(W_1 = rain) = \sum_{w_0}P(W_1 = rain | w_0)P(w_0)$$ $$= P(W_1 = rain | W_0 = sun)P(W_0 = sun) + P(W_1 = rain | W_0 = rain)P(W_0 = rain)$$ $$= 0.4 \cdot 0.8 + 0.9 \cdot 0.2 = \boxed{0.5}$$
 
 Hence our distribution for $$P(W_1)$$ is:
 
 | **$$ W_1 $$** | **$$ P(W_1) $$** |
-|:-------------:|:----------------:|
-| sun           | 0.5              |
-| rain          | 0.5              |
+| :-----------: | :--------------: |
+|      sun      |       0.5        |
+|     rain      |       0.5        |
 
 Notably, the probability that it will be sunny has decreased from 80% at time $$t = 0$$ to only 50% at time $$t = 1$$. This is a direct result of our transition model, which favors transitioning to rainy days over sunny days. This gives rise to a natural follow-up question: does the probability of being in a state at a given timestep ever converge? We'll address the answer to this problem in the following section.
 
@@ -102,10 +99,9 @@ $$P(W_{t+1}) = P(W_t) = \sum_{w_t}P(W_{t+1} | w_t)P(w_t)$$
 
 For our weather example, this gives us the following two equations:
 
-$$P(W_t = sun) = P(W_{t+1} = sun | W_t = sun)P(W_t = sun) + P(W_{t+1} = sun | W_t = rain)P(W_t = rain)$$
-$$= 0.6 \cdot P(W_t = sun) + 0.1 \cdot P(W_t = rain)$$
+$$P(W_t = sun) = P(W_{t+1} = sun | W_t = sun)P(W_t = sun) + P(W_{t+1} = sun | W_t = rain)P(W_t = rain)$$ $$= 0.6 \cdot P(W_t = sun) + 0.1 \cdot P(W_t = rain)$$
 
-$$P(W_t = rain) = P(W_{t+1} = rain | W_t = sun)P(W_t = sun) + P(W_{t+1} = rain | W)$$
+$$P(W_t = rain) = P(W_{t+1} = rain | W_t = sun)P(W_t = sun) + P(W_{t+1} = rain | W_t = rain)P(W_t = rain)$$ $$= 0.4 \cdot P(W_t = sun) + 0.9 \cdot P(W_t = rain)$$
 
 Now we have two equations in two unknowns. To solve, note that the sum of these probabilities must equal one, i.e.
 
@@ -124,9 +120,8 @@ $$0.6x + 0.1(1 - x) = x$$
 Solving this equation yields $$x = 1/5$$, and substituting this value into the first equation gives $$y = 4/5$$. Thus, our stationary distribution is:
 
 | **$$W$$** | **$$P(W)$$** |
-|:-----------:|:--------------:|
-| sun         | 0.2            |
-| rain        | 0.8            |
+| :-------: | :----------: |
+|    sun    |     0.2      |
+|   rain    |     0.8      |
 
 From this result, we can conclude that as we proceed through our mini-forward algorithm and let time go to infinity, the probability that it will be rainy converges to 80%. This is another direct result of our transition model, which favors transitioning to rainy days over sunny days.
-

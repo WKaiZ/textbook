@@ -43,6 +43,12 @@ Join (multiply) all the factors involving $$C$$, forming $$f_1(C, +e, T, S) = P(
 Sum out $$C$$ from this new factor, leaving us with a new factor $$f_2(+e, T, S)$$, sometimes written as $$P(+e | T, S)$$.
 <p>
 </p>
+Join all factors involving $$S$$, forming $$F_3(+e, S, T)=P(S|T) \cdot f_2(+e, T, S)$$, sometimes written as $$P(+e, S | T)$$.
+<p>
+</p>
+Sum out $$S$$, yielding $$f_4(+e, T)$$, sometimes written as $$P(+e | T)$$.
+<p>
+</p>
 Join the remaining factors, which gives $$f_5(+e, T) = f_4(+e, T) \cdot P(T)$$.
 <p>
 </p>

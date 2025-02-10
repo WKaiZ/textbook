@@ -13,7 +13,7 @@ _Additional Contributions by Regina Wang, Peyrin Kao, Matei Gardea, Danial Tokta
 
 _Website Set Up By [Wesley Zheng](https://wkaiz.github.io)._
 
-_Special Thanks to Ashley Chiu_
+_Special Thanks to Ashley Chiu._
 
 
 This is the textbook for [CS 188: Introduction to Artificial Intelligence](https://inst.eecs.berkeley.edu/~cs188/sp25) at [UC Berkeley](https://eecs.berkeley.edu/). It provides an introduction to the full range of topics studied in artificial intelligence, with emphasis on the "core competences" of intelligent systems - problem solving, reasoning, decision making, and learning - and on the logical and probabilistic foundations of these activities.

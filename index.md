@@ -25,9 +25,9 @@ This PDF is automatically generated each time there is a [correction](#correctio
 
 ## Corrections
 
-As of the Fall 2024 semester, this textbook are still being actively maintained and updated.
+As of the Spring 2025 semester, this textbook are still being actively maintained and updated.
 
-If you see any parts that needs to be corrected, please email [Wesley Zheng](mailto:wzheng0302@berkeley.edu).
+If you see any parts that needs to be corrected, please open a Github issue [here](https://github.com/BerkeleyAI/textbook/issues).
 
 ## Source and Changelog
 

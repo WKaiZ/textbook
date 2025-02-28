@@ -31,7 +31,7 @@ remote_theme: pmarsceill/just-the-docs
 color_scheme: wider
 aux_links:
   "CS 188":
-    - "https://inst.eecs.berkeley.edu/~cs188/fa24/"
+    - "https://inst.eecs.berkeley.edu/~cs188/"
   "Dark Mode":
     - "#"
 

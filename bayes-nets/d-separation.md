@@ -7,7 +7,7 @@ header-includes:
     \pagenumbering{gobble}
 ---
 
-# 6.4 D-Separation
+# 6.5 D-Separation
 
 One useful question to ask about a set of random variables is whether or not one variable is independent from another, or if one random variable is conditionally independent of another given a third random variable. Bayes' Nets representation of joint probability distributions gives us a way to quickly answer such questions by inspecting the topological structure of the graph.
 
@@ -15,7 +15,7 @@ We already mentioned that **a node is conditionally independent of all its ances
 
 We will present all three canonical cases of connected three-node two-edge Bayes' Nets, or triples, and the conditional independence relationships they express.
 
-## 6.4.1 Causal Chains
+## 6.5.1 Causal Chains
 
 <img src="{{ site.baseurl }}/assets/images/chain_free.PNG" alt="Causal Chain with no observations" />
 *Figure 1: Causal Chain with no observations.*
@@ -45,7 +45,11 @@ $$P(z|y) =
 </p>
 In this case, $$P(z|x) = 1$$ if $$x = z$$ and $$0$$ otherwise, so $$X$$ and $$Z$$ are not independent.
 
+<p>
+</p>
 However, we can make the statement that $$X \perp\!\!\!\perp Z | Y$$, as in Figure 2. Recall that this conditional independence means:
+<p>
+</p>
 
 $$P(X | Z, Y) = P(X | Y)$$
 
@@ -61,7 +65,7 @@ $$P(X | Z, y) = \frac{P(X, Z, y)}{P(Z, y)}
 </p>
 An analogous proof can be used to show the same thing for the case where $$X$$ has multiple parents. To summarize, in the causal chain configuration, $$X \perp\!\!\!\perp Z | Y$$.
 
-## 6.4.2 Common Cause
+## 6.5.2 Common Cause
 
 <img src="{{ site.baseurl }}/assets/images/cause_free.PNG" alt="Common Cause with no observations" />
 
@@ -98,7 +102,7 @@ But it is true that $$X \perp\!\!\!\perp Z | Y$$. That is, $$X$$ and $$Z$$ are i
 
 $$P(X | Z, y) = \frac{P(X, Z, y)}{P(Z, y)} = \frac{P(X|y) P(Z|y) P(y)}{P(Z|y) P(y)} = P(X|y)$$
 
-## 6.4.3 Common Effect
+## 6.5.3 Common Effect
 
 <img src="{{ site.baseurl }}/assets/images/effect_free.PNG" alt="Common Effect with no observations" />
 
@@ -138,7 +142,7 @@ This same logic applies when conditioning on descendants of $$Y$$ in the graph. 
 
 *Figure 7: Common Effect with child observations.*
 
-## 6.4.4 General Case, and D-separation
+## 6.5.4 General Case, and D-separation
 
 We can use the previous three cases as building blocks to help us answer conditional independence questions on an arbitrary Bayes' Net with more than three nodes and two edges. We formulate the problem as follows:
 
@@ -174,7 +178,7 @@ Any path in a graph from $$X$$ to $$Y$$ can be decomposed into a set of 3 consec
 <img src="{{ site.baseurl }}/assets/images/active.PNG" alt="Active triples" />
 <img src="{{ site.baseurl }}/assets/images/inactive.PNG" alt="Inactive triples" />
 
-## 6.4.5 Examples
+## 6.5.5 Examples
 
 Here are some examples of applying the $$d$$-separation algorithm:
 

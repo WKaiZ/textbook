@@ -56,7 +56,7 @@ $$P(X | Z, Y) = P(X | Y)$$
 We can prove this statement as follows:
 
 $$P(X | Z, y) = \frac{P(X, Z, y)}{P(Z, y)}
-= \frac{P(Z|y) P(y|X) P(X)}{\sum_{x} P(X, y, Z)}
+= \frac{P(Z|y) P(y|X) P(X)}{\sum_{x} P(x, y, Z)}
 = \frac{P(Z|y) P(y|X) P(X)}{P(Z|y) \sum_{x} P(y|x)P(x)}
 = \frac{P(y|X) P(X)}{\sum_{x} P(y|x)P(x)}
 = P(X|y)$$
@@ -173,9 +173,14 @@ Any path in a graph from $$X$$ to $$Y$$ can be decomposed into a set of 3 consec
 
 ---
 
-**Active triples**: We can enumerate all possibilities of active and inactive triples using the three canonical graphs we presented below in the figures.
+We can enumerate all possibilities of active and inactive triples using the three canonical graphs we presented below in the figures.
+
+**Active triples**: 
 
 <img src="{{ site.baseurl }}/assets/images/active.PNG" alt="Active triples" />
+
+**Inactive triples**:
+
 <img src="{{ site.baseurl }}/assets/images/inactive.PNG" alt="Inactive triples" />
 
 ## 6.5.5 Examples

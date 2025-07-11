@@ -11,7 +11,7 @@ _By Nikhil Sharma, Josh Hug, Jacky Liang, and Henry Zhu._
 
 _Additional Contributions by Regina Wang, Peyrin Kao, Matei Gardea, Danial Toktarbayev, Catherine Chu, Samantha Huang, Saathvik Selvan, Pranav Muralikrishnan, and [Wesley Zheng](https://wkaiz.github.io)._
 
-_Website Set Up By [Wesley Zheng](https://wkaiz.github.io)._
+_Website By [Wesley Zheng](https://wkaiz.github.io)._
 
 _Special Thanks to Ashley Chiu._
 
